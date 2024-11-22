@@ -1,0 +1,655 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Mainbridge\\Project\\AppointmentHospital\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{E8128300-0D06-4B6A-8505-4113CFE1AE57}|AppointmentHospital.csproj|d:\\mainbridge\\project\\appointmenthospital\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E8128300-0D06-4B6A-8505-4113CFE1AE57}|AppointmentHospital.csproj|solutionrelative:controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E8128300-0D06-4B6A-8505-4113CFE1AE57}|AppointmentHospital.csproj|d:\\mainbridge\\project\\appointmenthospital\\repositories\\implement\\accountrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E8128300-0D06-4B6A-8505-4113CFE1AE57}|AppointmentHospital.csproj|solutionrelative:repositories\\implement\\accountrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E8128300-0D06-4B6A-8505-4113CFE1AE57}|AppointmentHospital.csproj|d:\\mainbridge\\project\\appointmenthospital\\helpers\\seeddata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E8128300-0D06-4B6A-8505-4113CFE1AE57}|AppointmentHospital.csproj|solutionrelative:helpers\\seeddata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E8128300-0D06-4B6A-8505-4113CFE1AE57}|AppointmentHospital.csproj|d:\\mainbridge\\project\\appointmenthospital\\controllers\\patientcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E8128300-0D06-4B6A-8505-4113CFE1AE57}|AppointmentHospital.csproj|solutionrelative:controllers\\patientcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Mainbridge\\Project\\AppointmentHospital\\Migrations\\20241122090743_setNullForPatient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Migrations\\20241122090743_setNullForPatient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E8128300-0D06-4B6A-8505-4113CFE1AE57}|AppointmentHospital.csproj|d:\\mainbridge\\project\\appointmenthospital\\entity\\patient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E8128300-0D06-4B6A-8505-4113CFE1AE57}|AppointmentHospital.csproj|solutionrelative:entity\\patient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E8128300-0D06-4B6A-8505-4113CFE1AE57}|AppointmentHospital.csproj|d:\\mainbridge\\project\\appointmenthospital\\entity\\doctor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E8128300-0D06-4B6A-8505-4113CFE1AE57}|AppointmentHospital.csproj|solutionrelative:entity\\doctor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E8128300-0D06-4B6A-8505-4113CFE1AE57}|AppointmentHospital.csproj|d:\\mainbridge\\project\\appointmenthospital\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E8128300-0D06-4B6A-8505-4113CFE1AE57}|AppointmentHospital.csproj|solutionrelative:views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E8128300-0D06-4B6A-8505-4113CFE1AE57}|AppointmentHospital.csproj|d:\\mainbridge\\project\\appointmenthospital\\views\\shared\\_accountlayout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E8128300-0D06-4B6A-8505-4113CFE1AE57}|AppointmentHospital.csproj|solutionrelative:views\\shared\\_accountlayout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E8128300-0D06-4B6A-8505-4113CFE1AE57}|AppointmentHospital.csproj|d:\\mainbridge\\project\\appointmenthospital\\services\\implement\\accountservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E8128300-0D06-4B6A-8505-4113CFE1AE57}|AppointmentHospital.csproj|solutionrelative:services\\implement\\accountservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E8128300-0D06-4B6A-8505-4113CFE1AE57}|AppointmentHospital.csproj|d:\\mainbridge\\project\\appointmenthospital\\services\\iaccountservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E8128300-0D06-4B6A-8505-4113CFE1AE57}|AppointmentHospital.csproj|solutionrelative:services\\iaccountservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E8128300-0D06-4B6A-8505-4113CFE1AE57}|AppointmentHospital.csproj|d:\\mainbridge\\project\\appointmenthospital\\views\\account\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E8128300-0D06-4B6A-8505-4113CFE1AE57}|AppointmentHospital.csproj|solutionrelative:views\\account\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E8128300-0D06-4B6A-8505-4113CFE1AE57}|AppointmentHospital.csproj|d:\\mainbridge\\project\\appointmenthospital\\views\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E8128300-0D06-4B6A-8505-4113CFE1AE57}|AppointmentHospital.csproj|solutionrelative:views\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E8128300-0D06-4B6A-8505-4113CFE1AE57}|AppointmentHospital.csproj|d:\\mainbridge\\project\\appointmenthospital\\dtos\\account\\accountrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E8128300-0D06-4B6A-8505-4113CFE1AE57}|AppointmentHospital.csproj|solutionrelative:dtos\\account\\accountrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E8128300-0D06-4B6A-8505-4113CFE1AE57}|AppointmentHospital.csproj|d:\\mainbridge\\project\\appointmenthospital\\repositories\\iaccountrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E8128300-0D06-4B6A-8505-4113CFE1AE57}|AppointmentHospital.csproj|solutionrelative:repositories\\iaccountrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E8128300-0D06-4B6A-8505-4113CFE1AE57}|AppointmentHospital.csproj|d:\\mainbridge\\project\\appointmenthospital\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E8128300-0D06-4B6A-8505-4113CFE1AE57}|AppointmentHospital.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E8128300-0D06-4B6A-8505-4113CFE1AE57}|AppointmentHospital.csproj|d:\\mainbridge\\project\\appointmenthospital\\areas\\admin\\controllers\\admindashboardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E8128300-0D06-4B6A-8505-4113CFE1AE57}|AppointmentHospital.csproj|solutionrelative:areas\\admin\\controllers\\admindashboardcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E8128300-0D06-4B6A-8505-4113CFE1AE57}|AppointmentHospital.csproj|d:\\mainbridge\\project\\appointmenthospital\\controllers\\doctorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E8128300-0D06-4B6A-8505-4113CFE1AE57}|AppointmentHospital.csproj|solutionrelative:controllers\\doctorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E8128300-0D06-4B6A-8505-4113CFE1AE57}|AppointmentHospital.csproj|d:\\mainbridge\\project\\appointmenthospital\\views\\doctor\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E8128300-0D06-4B6A-8505-4113CFE1AE57}|AppointmentHospital.csproj|solutionrelative:views\\doctor\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E8128300-0D06-4B6A-8505-4113CFE1AE57}|AppointmentHospital.csproj|d:\\mainbridge\\project\\appointmenthospital\\views\\_viewstart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E8128300-0D06-4B6A-8505-4113CFE1AE57}|AppointmentHospital.csproj|solutionrelative:views\\_viewstart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E8128300-0D06-4B6A-8505-4113CFE1AE57}|AppointmentHospital.csproj|d:\\mainbridge\\project\\appointmenthospital\\areas\\admin\\views\\admindashboard\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E8128300-0D06-4B6A-8505-4113CFE1AE57}|AppointmentHospital.csproj|solutionrelative:areas\\admin\\views\\admindashboard\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E8128300-0D06-4B6A-8505-4113CFE1AE57}|AppointmentHospital.csproj|d:\\mainbridge\\project\\appointmenthospital\\areas\\admin\\views\\_viewstart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E8128300-0D06-4B6A-8505-4113CFE1AE57}|AppointmentHospital.csproj|solutionrelative:areas\\admin\\views\\_viewstart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E8128300-0D06-4B6A-8505-4113CFE1AE57}|AppointmentHospital.csproj|d:\\mainbridge\\project\\appointmenthospital\\areas\\admin\\views\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E8128300-0D06-4B6A-8505-4113CFE1AE57}|AppointmentHospital.csproj|solutionrelative:areas\\admin\\views\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E8128300-0D06-4B6A-8505-4113CFE1AE57}|AppointmentHospital.csproj|d:\\mainbridge\\project\\appointmenthospital\\views\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E8128300-0D06-4B6A-8505-4113CFE1AE57}|AppointmentHospital.csproj|solutionrelative:views\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E8128300-0D06-4B6A-8505-4113CFE1AE57}|AppointmentHospital.csproj|d:\\mainbridge\\project\\appointmenthospital\\wwwroot\\css\\account.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{E8128300-0D06-4B6A-8505-4113CFE1AE57}|AppointmentHospital.csproj|solutionrelative:wwwroot\\css\\account.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E8128300-0D06-4B6A-8505-4113CFE1AE57}|AppointmentHospital.csproj|d:\\mainbridge\\project\\appointmenthospital\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{E8128300-0D06-4B6A-8505-4113CFE1AE57}|AppointmentHospital.csproj|solutionrelative:wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E8128300-0D06-4B6A-8505-4113CFE1AE57}|AppointmentHospital.csproj|d:\\mainbridge\\project\\appointmenthospital\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{E8128300-0D06-4B6A-8505-4113CFE1AE57}|AppointmentHospital.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E8128300-0D06-4B6A-8505-4113CFE1AE57}|AppointmentHospital.csproj|d:\\mainbridge\\project\\appointmenthospital\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{E8128300-0D06-4B6A-8505-4113CFE1AE57}|AppointmentHospital.csproj|solutionrelative:wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E8128300-0D06-4B6A-8505-4113CFE1AE57}|AppointmentHospital.csproj|d:\\mainbridge\\project\\appointmenthospital\\views\\patient\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E8128300-0D06-4B6A-8505-4113CFE1AE57}|AppointmentHospital.csproj|solutionrelative:views\\patient\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E8128300-0D06-4B6A-8505-4113CFE1AE57}|AppointmentHospital.csproj|d:\\mainbridge\\project\\appointmenthospital\\entity\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E8128300-0D06-4B6A-8505-4113CFE1AE57}|AppointmentHospital.csproj|solutionrelative:entity\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E8128300-0D06-4B6A-8505-4113CFE1AE57}|AppointmentHospital.csproj|d:\\mainbridge\\project\\appointmenthospital\\entity\\appointment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E8128300-0D06-4B6A-8505-4113CFE1AE57}|AppointmentHospital.csproj|solutionrelative:entity\\appointment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Mainbridge\\Project\\AppointmentHospital\\Migrations\\20241121035859_initDB.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Migrations\\20241121035859_initDB.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E8128300-0D06-4B6A-8505-4113CFE1AE57}|AppointmentHospital.csproj|d:\\mainbridge\\project\\appointmenthospital\\appointmenthospital.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{E8128300-0D06-4B6A-8505-4113CFE1AE57}|AppointmentHospital.csproj|solutionrelative:appointmenthospital.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E8128300-0D06-4B6A-8505-4113CFE1AE57}|AppointmentHospital.csproj|d:\\mainbridge\\project\\appointmenthospital\\views\\shared\\_validationscriptspartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E8128300-0D06-4B6A-8505-4113CFE1AE57}|AppointmentHospital.csproj|solutionrelative:views\\shared\\_validationscriptspartial.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E8128300-0D06-4B6A-8505-4113CFE1AE57}|AppointmentHospital.csproj|d:\\mainbridge\\project\\appointmenthospital\\entity\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E8128300-0D06-4B6A-8505-4113CFE1AE57}|AppointmentHospital.csproj|solutionrelative:entity\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E8128300-0D06-4B6A-8505-4113CFE1AE57}|AppointmentHospital.csproj|d:\\mainbridge\\project\\appointmenthospital\\enum\\appointmentstatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E8128300-0D06-4B6A-8505-4113CFE1AE57}|AppointmentHospital.csproj|solutionrelative:enum\\appointmentstatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E8128300-0D06-4B6A-8505-4113CFE1AE57}|AppointmentHospital.csproj|d:\\mainbridge\\project\\appointmenthospital\\migrations\\20241121041134_initdb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E8128300-0D06-4B6A-8505-4113CFE1AE57}|AppointmentHospital.csproj|solutionrelative:migrations\\20241121041134_initdb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 336,
+          "SelectedChildIndex": 5,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{40ea2e6b-2121-4bb8-a43e-c83c04b51041}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "IAccountService.cs",
+              "DocumentMoniker": "D:\\Mainbridge\\Project\\AppointmentHospital\\Services\\IAccountService.cs",
+              "RelativeDocumentMoniker": "Services\\IAccountService.cs",
+              "ToolTip": "D:\\Mainbridge\\Project\\AppointmentHospital\\Services\\IAccountService.cs",
+              "RelativeToolTip": "Services\\IAccountService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-22T02:31:47.477Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Patient.cs",
+              "DocumentMoniker": "D:\\Mainbridge\\Project\\AppointmentHospital\\Entity\\Patient.cs",
+              "RelativeDocumentMoniker": "Entity\\Patient.cs",
+              "ToolTip": "D:\\Mainbridge\\Project\\AppointmentHospital\\Entity\\Patient.cs",
+              "RelativeToolTip": "Entity\\Patient.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-21T02:05:52.642Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Doctor.cs",
+              "DocumentMoniker": "D:\\Mainbridge\\Project\\AppointmentHospital\\Entity\\Doctor.cs",
+              "RelativeDocumentMoniker": "Entity\\Doctor.cs",
+              "ToolTip": "D:\\Mainbridge\\Project\\AppointmentHospital\\Entity\\Doctor.cs",
+              "RelativeToolTip": "Entity\\Doctor.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAA+wBcAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-21T02:05:43.482Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AccountController.cs",
+              "DocumentMoniker": "D:\\Mainbridge\\Project\\AppointmentHospital\\Controllers\\AccountController.cs",
+              "RelativeDocumentMoniker": "Controllers\\AccountController.cs",
+              "ToolTip": "D:\\Mainbridge\\Project\\AppointmentHospital\\Controllers\\AccountController.cs",
+              "RelativeToolTip": "Controllers\\AccountController.cs",
+              "ViewState": "AgIAAC8AAAAAAAAAAAASwDUAAAA7AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-21T07:50:52.815Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "PatientController.cs",
+              "DocumentMoniker": "D:\\Mainbridge\\Project\\AppointmentHospital\\Controllers\\PatientController.cs",
+              "RelativeDocumentMoniker": "Controllers\\PatientController.cs",
+              "ToolTip": "D:\\Mainbridge\\Project\\AppointmentHospital\\Controllers\\PatientController.cs",
+              "RelativeToolTip": "Controllers\\PatientController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-21T10:47:33.023Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AccountRepository.cs",
+              "DocumentMoniker": "D:\\Mainbridge\\Project\\AppointmentHospital\\Repositories\\Implement\\AccountRepository.cs",
+              "RelativeDocumentMoniker": "Repositories\\Implement\\AccountRepository.cs",
+              "ToolTip": "D:\\Mainbridge\\Project\\AppointmentHospital\\Repositories\\Implement\\AccountRepository.cs",
+              "RelativeToolTip": "Repositories\\Implement\\AccountRepository.cs",
+              "ViewState": "AgIAABoAAAAAAAAAAADwvy0AAAA1AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-22T02:32:39.511Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "20241122090743_setNullForPatient.cs",
+              "DocumentMoniker": "D:\\Mainbridge\\Project\\AppointmentHospital\\Migrations\\20241122090743_setNullForPatient.cs",
+              "RelativeDocumentMoniker": "Migrations\\20241122090743_setNullForPatient.cs",
+              "ToolTip": "D:\\Mainbridge\\Project\\AppointmentHospital\\Migrations\\20241122090743_setNullForPatient.cs",
+              "RelativeToolTip": "Migrations\\20241122090743_setNullForPatient.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAxwA8AAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-22T09:07:43.243Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "SeedData.cs",
+              "DocumentMoniker": "D:\\Mainbridge\\Project\\AppointmentHospital\\Helpers\\SeedData.cs",
+              "RelativeDocumentMoniker": "Helpers\\SeedData.cs",
+              "ToolTip": "D:\\Mainbridge\\Project\\AppointmentHospital\\Helpers\\SeedData.cs",
+              "RelativeToolTip": "Helpers\\SeedData.cs",
+              "ViewState": "AgIAACoAAAAAAAAAAAAYwDoAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-21T04:28:35.114Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "D:\\Mainbridge\\Project\\AppointmentHospital\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "D:\\Mainbridge\\Project\\AppointmentHospital\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAACkAAAAAAAAAAAAkwEoAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-11-21T03:19:24.604Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "AccountService.cs",
+              "DocumentMoniker": "D:\\Mainbridge\\Project\\AppointmentHospital\\Services\\Implement\\AccountService.cs",
+              "RelativeDocumentMoniker": "Services\\Implement\\AccountService.cs",
+              "ToolTip": "D:\\Mainbridge\\Project\\AppointmentHospital\\Services\\Implement\\AccountService.cs",
+              "RelativeToolTip": "Services\\Implement\\AccountService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-22T02:31:59.999Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "_AccountLayout.cshtml",
+              "DocumentMoniker": "D:\\Mainbridge\\Project\\AppointmentHospital\\Views\\Shared\\_AccountLayout.cshtml",
+              "RelativeDocumentMoniker": "Views\\Shared\\_AccountLayout.cshtml",
+              "ToolTip": "D:\\Mainbridge\\Project\\AppointmentHospital\\Views\\Shared\\_AccountLayout.cshtml",
+              "RelativeToolTip": "Views\\Shared\\_AccountLayout.cshtml",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAiwB4AAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-11-21T14:02:38.824Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "AccountRequest.cs",
+              "DocumentMoniker": "D:\\Mainbridge\\Project\\AppointmentHospital\\DTOs\\Account\\AccountRequest.cs",
+              "RelativeDocumentMoniker": "DTOs\\Account\\AccountRequest.cs",
+              "ToolTip": "D:\\Mainbridge\\Project\\AppointmentHospital\\DTOs\\Account\\AccountRequest.cs",
+              "RelativeToolTip": "DTOs\\Account\\AccountRequest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-22T02:02:51.199Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Register.cshtml",
+              "DocumentMoniker": "D:\\Mainbridge\\Project\\AppointmentHospital\\Views\\Account\\Register.cshtml",
+              "RelativeDocumentMoniker": "Views\\Account\\Register.cshtml",
+              "ToolTip": "D:\\Mainbridge\\Project\\AppointmentHospital\\Views\\Account\\Register.cshtml",
+              "RelativeToolTip": "Views\\Account\\Register.cshtml",
+              "ViewState": "AgIAABUAAAAAAAAAAAAAACQAAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-11-22T07:53:45.198Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Login.cshtml",
+              "DocumentMoniker": "D:\\Mainbridge\\Project\\AppointmentHospital\\Views\\Account\\Login.cshtml",
+              "RelativeDocumentMoniker": "Views\\Account\\Login.cshtml",
+              "ToolTip": "D:\\Mainbridge\\Project\\AppointmentHospital\\Views\\Account\\Login.cshtml",
+              "RelativeToolTip": "Views\\Account\\Login.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACQAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-11-21T07:51:49.747Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "IAccountRepository.cs",
+              "DocumentMoniker": "D:\\Mainbridge\\Project\\AppointmentHospital\\Repositories\\IAccountRepository.cs",
+              "RelativeDocumentMoniker": "Repositories\\IAccountRepository.cs",
+              "ToolTip": "D:\\Mainbridge\\Project\\AppointmentHospital\\Repositories\\IAccountRepository.cs",
+              "RelativeToolTip": "Repositories\\IAccountRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-22T02:32:17.856Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\Mainbridge\\Project\\AppointmentHospital\\Views\\Doctor\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\Doctor\\Index.cshtml",
+              "ToolTip": "D:\\Mainbridge\\Project\\AppointmentHospital\\Views\\Doctor\\Index.cshtml",
+              "RelativeToolTip": "Views\\Doctor\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-11-22T03:34:30.18Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "DoctorController.cs",
+              "DocumentMoniker": "D:\\Mainbridge\\Project\\AppointmentHospital\\Controllers\\DoctorController.cs",
+              "RelativeDocumentMoniker": "Controllers\\DoctorController.cs",
+              "ToolTip": "D:\\Mainbridge\\Project\\AppointmentHospital\\Controllers\\DoctorController.cs",
+              "RelativeToolTip": "Controllers\\DoctorController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-22T03:33:56.249Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\Mainbridge\\Project\\AppointmentHospital\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "D:\\Mainbridge\\Project\\AppointmentHospital\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAACAAAAAAAAAAAAAQwDAAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-21T02:52:16.032Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "AdminDashBoardController.cs",
+              "DocumentMoniker": "D:\\Mainbridge\\Project\\AppointmentHospital\\Areas\\Admin\\Controllers\\AdminDashBoardController.cs",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Controllers\\AdminDashBoardController.cs",
+              "ToolTip": "D:\\Mainbridge\\Project\\AppointmentHospital\\Areas\\Admin\\Controllers\\AdminDashBoardController.cs",
+              "RelativeToolTip": "Areas\\Admin\\Controllers\\AdminDashBoardController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-22T03:46:52.109Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\Mainbridge\\Project\\AppointmentHospital\\Areas\\Admin\\Views\\AdminDashBoard\\Index.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\AdminDashBoard\\Index.cshtml",
+              "ToolTip": "D:\\Mainbridge\\Project\\AppointmentHospital\\Areas\\Admin\\Views\\AdminDashBoard\\Index.cshtml",
+              "RelativeToolTip": "Areas\\Admin\\Views\\AdminDashBoard\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-11-22T03:47:43.578Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "_ViewStart.cshtml",
+              "DocumentMoniker": "D:\\Mainbridge\\Project\\AppointmentHospital\\Views\\_ViewStart.cshtml",
+              "RelativeDocumentMoniker": "Views\\_ViewStart.cshtml",
+              "ToolTip": "D:\\Mainbridge\\Project\\AppointmentHospital\\Views\\_ViewStart.cshtml",
+              "RelativeToolTip": "Views\\_ViewStart.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-11-21T14:14:42.711Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "_ViewImports.cshtml",
+              "DocumentMoniker": "D:\\Mainbridge\\Project\\AppointmentHospital\\Areas\\Admin\\Views\\_ViewImports.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\_ViewImports.cshtml",
+              "ToolTip": "D:\\Mainbridge\\Project\\AppointmentHospital\\Areas\\Admin\\Views\\_ViewImports.cshtml",
+              "RelativeToolTip": "Areas\\Admin\\Views\\_ViewImports.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-11-22T03:48:21.182Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "_ViewStart.cshtml",
+              "DocumentMoniker": "D:\\Mainbridge\\Project\\AppointmentHospital\\Areas\\Admin\\Views\\_ViewStart.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\_ViewStart.cshtml",
+              "ToolTip": "D:\\Mainbridge\\Project\\AppointmentHospital\\Areas\\Admin\\Views\\_ViewStart.cshtml",
+              "RelativeToolTip": "Areas\\Admin\\Views\\_ViewStart.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-11-22T03:48:41.065Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "_ViewImports.cshtml",
+              "DocumentMoniker": "D:\\Mainbridge\\Project\\AppointmentHospital\\Views\\_ViewImports.cshtml",
+              "RelativeDocumentMoniker": "Views\\_ViewImports.cshtml",
+              "ToolTip": "D:\\Mainbridge\\Project\\AppointmentHospital\\Views\\_ViewImports.cshtml",
+              "RelativeToolTip": "Views\\_ViewImports.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-11-21T14:15:15.237Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "account.css",
+              "DocumentMoniker": "D:\\Mainbridge\\Project\\AppointmentHospital\\wwwroot\\css\\account.css",
+              "RelativeDocumentMoniker": "wwwroot\\css\\account.css",
+              "ToolTip": "D:\\Mainbridge\\Project\\AppointmentHospital\\wwwroot\\css\\account.css",
+              "RelativeToolTip": "wwwroot\\css\\account.css",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2024-11-21T14:07:27.796Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "site.css",
+              "DocumentMoniker": "D:\\Mainbridge\\Project\\AppointmentHospital\\wwwroot\\css\\site.css",
+              "RelativeDocumentMoniker": "wwwroot\\css\\site.css",
+              "ToolTip": "D:\\Mainbridge\\Project\\AppointmentHospital\\wwwroot\\css\\site.css",
+              "RelativeToolTip": "wwwroot\\css\\site.css",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2024-11-21T09:20:23.68Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "bootstrap.css",
+              "DocumentMoniker": "D:\\Mainbridge\\Project\\AppointmentHospital\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+              "RelativeDocumentMoniker": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+              "ToolTip": "D:\\Mainbridge\\Project\\AppointmentHospital\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+              "RelativeToolTip": "wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2024-11-21T09:20:38.542Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\Mainbridge\\Project\\AppointmentHospital\\Views\\Patient\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\Patient\\Index.cshtml",
+              "ToolTip": "D:\\Mainbridge\\Project\\AppointmentHospital\\Views\\Patient\\Index.cshtml",
+              "RelativeToolTip": "Views\\Patient\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-11-21T10:48:08.45Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 36,
+              "Title": "20241121041134_initDB.cs",
+              "DocumentMoniker": "D:\\Mainbridge\\Project\\AppointmentHospital\\Migrations\\20241121041134_initDB.cs",
+              "RelativeDocumentMoniker": "Migrations\\20241121041134_initDB.cs",
+              "ToolTip": "D:\\Mainbridge\\Project\\AppointmentHospital\\Migrations\\20241121041134_initDB.cs",
+              "RelativeToolTip": "Migrations\\20241121041134_initDB.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-21T04:11:34.69Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "20241121035859_initDB.cs",
+              "DocumentMoniker": "D:\\Mainbridge\\Project\\AppointmentHospital\\Migrations\\20241121035859_initDB.cs",
+              "RelativeDocumentMoniker": "Migrations\\20241121035859_initDB.cs",
+              "ToolTip": "D:\\Mainbridge\\Project\\AppointmentHospital\\Migrations\\20241121035859_initDB.cs",
+              "RelativeToolTip": "Migrations\\20241121035859_initDB.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-21T03:59:00.116Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\Mainbridge\\Project\\AppointmentHospital\\appsettings.json",
+              "RelativeDocumentMoniker": "appsettings.json",
+              "ToolTip": "D:\\Mainbridge\\Project\\AppointmentHospital\\appsettings.json",
+              "RelativeToolTip": "appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAACcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-11-21T02:51:52.995Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "AppDbContext.cs",
+              "DocumentMoniker": "D:\\Mainbridge\\Project\\AppointmentHospital\\Entity\\AppDbContext.cs",
+              "RelativeDocumentMoniker": "Entity\\AppDbContext.cs",
+              "ToolTip": "D:\\Mainbridge\\Project\\AppointmentHospital\\Entity\\AppDbContext.cs",
+              "RelativeToolTip": "Entity\\AppDbContext.cs",
+              "ViewState": "AgIAABQAAAAAAAAAAAAQwCoAAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-21T02:34:54.661Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "Appointment.cs",
+              "DocumentMoniker": "D:\\Mainbridge\\Project\\AppointmentHospital\\Entity\\Appointment.cs",
+              "RelativeDocumentMoniker": "Entity\\Appointment.cs",
+              "ToolTip": "D:\\Mainbridge\\Project\\AppointmentHospital\\Entity\\Appointment.cs",
+              "RelativeToolTip": "Entity\\Appointment.cs",
+              "ViewState": "AgIAABgAAAAAAAAAAAAowBUAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-21T02:06:02.442Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "AppointmentHospital.csproj",
+              "DocumentMoniker": "D:\\Mainbridge\\Project\\AppointmentHospital\\AppointmentHospital.csproj",
+              "RelativeDocumentMoniker": "AppointmentHospital.csproj",
+              "ToolTip": "D:\\Mainbridge\\Project\\AppointmentHospital\\AppointmentHospital.csproj",
+              "RelativeToolTip": "AppointmentHospital.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-11-21T03:36:43.274Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "_ValidationScriptsPartial.cshtml",
+              "DocumentMoniker": "D:\\Mainbridge\\Project\\AppointmentHospital\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
+              "RelativeDocumentMoniker": "Views\\Shared\\_ValidationScriptsPartial.cshtml",
+              "ToolTip": "D:\\Mainbridge\\Project\\AppointmentHospital\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
+              "RelativeToolTip": "Views\\Shared\\_ValidationScriptsPartial.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-11-21T01:50:34.433Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 35,
+              "Title": "AppointmentStatus.cs",
+              "DocumentMoniker": "D:\\Mainbridge\\Project\\AppointmentHospital\\Enum\\AppointmentStatus.cs",
+              "RelativeDocumentMoniker": "Enum\\AppointmentStatus.cs",
+              "ToolTip": "D:\\Mainbridge\\Project\\AppointmentHospital\\Enum\\AppointmentStatus.cs",
+              "RelativeToolTip": "Enum\\AppointmentStatus.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-21T02:30:11.505Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "User.cs",
+              "DocumentMoniker": "D:\\Mainbridge\\Project\\AppointmentHospital\\Entity\\User.cs",
+              "RelativeDocumentMoniker": "Entity\\User.cs",
+              "ToolTip": "D:\\Mainbridge\\Project\\AppointmentHospital\\Entity\\User.cs",
+              "RelativeToolTip": "Entity\\User.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-21T02:04:00.643Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

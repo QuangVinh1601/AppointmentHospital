@@ -1,0 +1,93 @@
+﻿:root {
+    --primary-color: #2c3e50;
+    --secondary-color: #3498db;
+    --accent-color: #e74c3c;
+    --gradient-start: #3498db;
+    --gradient-end: white;
+}
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+    min-height: 100vh;
+}
+
+.vh-100 {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.h-custom {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    padding: 2rem 0;
+}
+
+.login-container {
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    padding: 2.5rem;
+    transition: transform 0.3s ease;
+}
+
+    .login-container:hover {
+        transform: translateY(-5px);
+    }
+
+
+
+.img-fluid:hover {
+    transform: scale(1.02);
+}
+
+.form-control {
+    border: 2px solid #eee;
+    border-radius: 8px;
+    padding: 0.8rem 1rem;
+    transition: all 0.3s ease;
+}
+
+    .form-control:focus {
+        border-color: var(--secondary-color);
+        box-shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.25);
+    }
+
+.btn-primary {
+    background: var(--gradient-start);
+    opacity: 0.8;
+    border: none;
+    border-radius: 8px;
+    padding: 0.8rem 2rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+    .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+    }
+
+.footer {
+    background-color: rgba(44, 62, 80, 0.9);
+    color: white !important;
+    padding: 1rem 0;
+    width: 100%;
+    backdrop-filter: blur(10px);
+}
+
+.footer-container {
+    padding: 0.5rem;
+}
+
+.footer a {
+    color: rgba(255,255,255,0.8) !important;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    margin-left: 0.5rem;
+}
+
+    .footer a:hover {
+        color: white !important;
+    }
