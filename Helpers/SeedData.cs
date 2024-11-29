@@ -1,4 +1,7 @@
-﻿using AppointmentHospital.Models;
+﻿using AppointmentHospital.Entity;
+using AppointmentHospital.EnumStatus;
+using AppointmentHospital.Models;
+using Bogus;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json;
@@ -16,13 +19,42 @@ namespace AppointmentHospital.Helpers
             _roleManager = roleManager;
             _userManager = userManager;
         }
+        public async Task CreateAppointment (Guid patientId, Guid doctorId, List<DateTime> appointmentTime)
+        {
+            var appointment = new Appointment()
+            {
+                PatientId = patientId,
+                DoctorId = doctorId,
+                AppointmentTime = new Faker().PickRandom(appointmentTime),
+                Notes = "Seed data appointment",
+                CreatedAt = DateTime.UtcNow,
+                UpdatedAt = DateTime.UtcNow,
+                CancellationReason = null,
+                Status = AppointmentStatus.Pending,
+            };
+            _context.Appointments.Add(appointment);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task CreateDoctorTimeSlot(Doctor doctor)
+        {
+            var fakeTimeSlot = new Faker<TimeSlot>()
+                    .RuleFor(ts => ts.DoctorId, f => doctor.DoctorId)
+                    .RuleFor(ts => ts.StartTime, f => new DateTime(2024, 12, f.Random.Int(1, 30), 9, 0, 0))
+                    .RuleFor(ts => ts.EndTime, (f, ts) => ts.StartTime.AddHours(1));
+            
+               var timeSlot =  fakeTimeSlot.Generate(new Faker().Random.Int(2,6));
+               await _context.TimeSlots.AddRangeAsync(timeSlot);
+               await _context.SaveChangesAsync();
+        }
+       
         public async Task InitialData()
         {
-            if(!(await _roleManager.RoleExistsAsync("Admin")))
+            if (!(await _roleManager.RoleExistsAsync("Admin")))
             {
                 await _roleManager.CreateAsync(new IdentityRole<Guid>("Admin"));
             }
-            if(!(await _roleManager.RoleExistsAsync("Patient")))
+            if (!(await _roleManager.RoleExistsAsync("Patient")))
             {
                 await _roleManager.CreateAsync(new IdentityRole<Guid>("Patient"));
             }
@@ -30,8 +62,8 @@ namespace AppointmentHospital.Helpers
             {
                 await _roleManager.CreateAsync(new IdentityRole<Guid>("Doctor"));
             }
-            
-            if(!(await _context.Users.AnyAsync(u => u.UserName == "admin@gmail.com")))
+
+            if (!(await _context.Users.AnyAsync()))
             {
                 var admin = new User
                 {
@@ -44,63 +76,116 @@ namespace AppointmentHospital.Helpers
                 {
                     await _userManager.AddToRoleAsync(admin, "Admin");
                 }
-            }
-            if (!(await _context.Users.AnyAsync(u => u.UserName == "patient1@gmail.com")))
-            {
                 var user = new User
                 {
                     Email = "patient1@gmail.com",
                     UserName = "patient1@gmail.com",
                     EmailConfirmed = true
                 };
-                var patient = new Patient
-                {
-                    FullName = "John Bracker",
-                    Address = "Viet nam",
-                    DateOfBirth = new DateTime(2002, 11, 11),
-                    User = user
-                };
-
-                var result = await _userManager.CreateAsync(user, "Patient123#");
-                if (result.Succeeded)
+                var createPatientResult = await _userManager.CreateAsync(user, "Patient123#");
+                if (createPatientResult.Succeeded)
                 {
                     await _userManager.AddToRoleAsync(user, "Patient");
+                    var patient = new Patient
+                    {
+                        PatientId = user.Id,
+                        FullName = "John Bracker",
+                        Address = "Viet nam",
+                        DateOfBirth = new DateTime(2002, 11, 11),
+                        User = user
+                    };
                     _context.Patients.Add(patient);
                     await _context.SaveChangesAsync();
                 }
-            }
-            if (!(await _context.Users.AnyAsync(u => u.UserName == "doctor@gmail.com")))
-            {
-                var user = new User
+                var user2 = new User
                 {
                     Email = "doctor@gmail.com",
                     UserName = "doctor@gmail.com",
                     EmailConfirmed = true
                 };
-                var availableTime = new
-                {
-                    Monday = new[] { "08:00-12:00", "13:00-17:00" },
-                    Tuesday = new[] { "08:00-12:00", "13:00-17:00" }
-                };
-                var availableTimeString = JsonSerializer.Serialize(availableTime);
-                var doctor = new Doctor
-                {
-                    FullName = "John Bracker",
-                    Specializaiton = "Khoa tim mạch",
-                    ExperienceYear = 3,
-                    AvailableTime = availableTimeString,
-                    User = user,
-                };
 
-                var result = await _userManager.CreateAsync(user, "Doctor123#");
+
+                var createDoctorResult = await _userManager.CreateAsync(user2, "Doctor123#");
                 if (result.Succeeded)
                 {
-                    await _userManager.AddToRoleAsync(user, "Doctor");
+                    await _userManager.AddToRoleAsync(user2, "Doctor");
+             
+                    var doctor = new Doctor
+                    {
+                        DoctorId = user2.Id,
+                        FullName = "John Bracker",
+                        Specializaiton = Specialization.NgoaiKhoa,
+                        ExperienceYear = 3,
+                        User = user2,
+                    };
                     _context.Doctors.Add(doctor);
                     await _context.SaveChangesAsync();
                 }
-            }
 
+                var fakerUser = new Faker<User>()
+                .RuleFor(u => u.UserName, f => f.Internet.Email())
+                .RuleFor(u => u.Email, f => f.Internet.Email())
+                .RuleFor(u => u.PhoneNumber, f => f.Phone.PhoneNumber())
+                .RuleFor(u => u.EmailConfirmed, f => true);
+
+                var users = fakerUser.Generate(20);
+                var patientList = new List<Patient>();
+                var doctorList = new List<Doctor>();
+
+                foreach (var patientFake in users.Take(12))
+                {
+                    var createResult = await _userManager.CreateAsync(patientFake, "Patient123#");
+                    if (createResult.Succeeded)
+                    {
+                        await _userManager.AddToRoleAsync(patientFake, "Patient");
+
+                        var fakerPatient = new Faker<Patient>()
+                        .RuleFor(p => p.Address, f => f.Address.FullAddress())
+                        .RuleFor(p => p.DateOfBirth, f => f.Date.Past(50, DateTime.Now.AddYears(-18)))
+                        .RuleFor(p => p.FullName, f => f.Name.FullName());
+                        var patient = fakerPatient.Generate();
+                        patient.PatientId = patientFake.Id;
+                        await _context.Patients.AddAsync(patient);
+                        await _context.SaveChangesAsync();
+                        patientList.Add(patient);
+                    }
+                }
+                foreach (var doctorFake in users.Skip(12))
+                {
+                    var createResult = await _userManager.CreateAsync(doctorFake, "Doctor123#");
+                    if (createResult.Succeeded)
+                    {
+                        await _userManager.AddToRoleAsync(doctorFake, "Doctor");
+                        var fakeDoctor = new Faker<Doctor>()
+                       .RuleFor(d => d.FullName, f => f.Name.FullName())
+                       .RuleFor(d => d.Specializaiton, f => f.PickRandom<Specialization>())
+                       .RuleFor(d => d.ExperienceYear, f => f.Random.Int(1, 5));
+                       
+                        var doctorFaker = fakeDoctor.Generate();
+                        doctorFaker.DoctorId = doctorFake.Id;
+                        _context.Doctors.Add(doctorFaker);
+                        await _context.SaveChangesAsync();
+                        await CreateDoctorTimeSlot(doctorFaker);
+                        doctorList.Add(doctorFaker);
+                    }
+                }
+                var faker = new Faker();
+                var ramdomInt = faker.Random.Int(1, 3);
+
+                foreach ( var patient in patientList )
+                {
+                    for (int i = 0; i< ramdomInt; i++)
+                    {
+                        var doctorId = faker.PickRandom(doctorList).DoctorId;
+                        var appointmentTime = await _context.TimeSlots.Where(ts => ts.DoctorId == doctorId)
+                                                                      .Select(ts => ts.StartTime)
+                                                                      .ToListAsync();
+                        await CreateAppointment(patient.PatientId, doctorId, appointmentTime);
+                    }
+                }
+
+
+            }
         }
     }
 }

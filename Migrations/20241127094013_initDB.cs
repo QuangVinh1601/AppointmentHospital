@@ -24,7 +24,7 @@ namespace AppointmentHospital.Migrations
                 {
                     table.PrimaryKey("PK_Roles", x => x.Id);
                 });
-
+            
             migrationBuilder.CreateTable(
                 name: "Users",
                 columns: table => new
@@ -77,7 +77,7 @@ namespace AppointmentHospital.Migrations
                 {
                     DoctorId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     FullName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    Specializaiton = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Specializaiton = table.Column<int>(type: "int", nullable: false),
                     AvailableTime = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ExperienceYear = table.Column<int>(type: "int", nullable: false)
                 },
@@ -98,8 +98,8 @@ namespace AppointmentHospital.Migrations
                 {
                     PatientId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     FullName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    Address = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
-                    DateOfBirth = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    Address = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
+                    DateOfBirth = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -198,6 +198,27 @@ namespace AppointmentHospital.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "TimeSlots",
+                columns: table => new
+                {
+                    TimeSlotId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    DoctorId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    DayOfWeek = table.Column<int>(type: "int", nullable: false),
+                    StartTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    EndTime = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TimeSlots", x => x.TimeSlotId);
+                    table.ForeignKey(
+                        name: "FK_TimeSlots_Doctors_DoctorId",
+                        column: x => x.DoctorId,
+                        principalTable: "Doctors",
+                        principalColumn: "DoctorId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Appointments",
                 columns: table => new
                 {
@@ -251,6 +272,11 @@ namespace AppointmentHospital.Migrations
                 filter: "[NormalizedName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_TimeSlots_DoctorId",
+                table: "TimeSlots",
+                column: "DoctorId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_UserClaims_UserId",
                 table: "UserClaims",
                 column: "UserId");
@@ -288,6 +314,9 @@ namespace AppointmentHospital.Migrations
                 name: "RoleClaims");
 
             migrationBuilder.DropTable(
+                name: "TimeSlots");
+
+            migrationBuilder.DropTable(
                 name: "UserClaims");
 
             migrationBuilder.DropTable(
@@ -300,10 +329,10 @@ namespace AppointmentHospital.Migrations
                 name: "UserTokens");
 
             migrationBuilder.DropTable(
-                name: "Doctors");
+                name: "Patients");
 
             migrationBuilder.DropTable(
-                name: "Patients");
+                name: "Doctors");
 
             migrationBuilder.DropTable(
                 name: "Roles");

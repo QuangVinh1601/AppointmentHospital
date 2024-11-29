@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "MHrFX8Z98qKq1OQBIOjzs+J1BOdf2dMBO2mt3uJxq3w=",
+  "Hash": "gzLyTogIxvpflyfvpx86uCETcMJWnr1yKyi3b8tXY0A=",
   "Source": "AppointmentHospital",
   "BasePath": "_content/AppointmentHospital",
   "Mode": "Default",
@@ -74,6 +74,25 @@
       "OriginalItemSpec": "wwwroot\\css\\account.css"
     },
     {
+      "Identity": "D:\\Mainbridge\\Project\\AppointmentHospital\\wwwroot\\css\\create.css",
+      "SourceId": "AppointmentHospital",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Mainbridge\\Project\\AppointmentHospital\\wwwroot\\",
+      "BasePath": "_content/AppointmentHospital",
+      "RelativePath": "css/create.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\create.css"
+    },
+    {
       "Identity": "D:\\Mainbridge\\Project\\AppointmentHospital\\wwwroot\\css\\site.css",
       "SourceId": "AppointmentHospital",
       "SourceType": "Discovered",
@@ -110,6 +129,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "D:\\Mainbridge\\Project\\AppointmentHospital\\wwwroot\\images\\hospital.png",
+      "SourceId": "AppointmentHospital",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Mainbridge\\Project\\AppointmentHospital\\wwwroot\\",
+      "BasePath": "_content/AppointmentHospital",
+      "RelativePath": "images/hospital.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\hospital.png"
     },
     {
       "Identity": "D:\\Mainbridge\\Project\\AppointmentHospital\\wwwroot\\js\\site.js",

@@ -1,4 +1,5 @@
-﻿using AppointmentHospital.Enum;
+﻿using AppointmentHospital.Entity;
+using AppointmentHospital.EnumStatus;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -12,6 +13,7 @@ namespace AppointmentHospital.Models
         public DbSet<Appointment> Appointments { get; set; }
         public DbSet<Doctor> Doctors { get; set; }
         public DbSet<Patient> Patients { get; set; }
+        public DbSet<TimeSlot> TimeSlots { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -19,6 +21,10 @@ namespace AppointmentHospital.Models
 
             builder.Entity<Appointment>()
                    .Property(e => e.Status)
+                   .HasConversion<int>();
+
+            builder.Entity<Doctor>()
+                   .Property(e => e.Specializaiton)
                    .HasConversion<int>();
 
             foreach (var entityType in builder.Model.GetEntityTypes())
@@ -33,16 +39,15 @@ namespace AppointmentHospital.Models
             builder.Entity<Appointment>(entity =>
             {
                 entity.HasOne(a => a.Patient)
-                .WithMany()
+                .WithMany(p => p.Appointments)
                 .HasForeignKey(a => a.PatientId)
                 .OnDelete(DeleteBehavior.Restrict);
 
                 entity.HasOne(a => a.Doctor)
-                .WithMany()
+                .WithMany(d => d.Appointments)
                 .HasForeignKey(a => a.DoctorId)
                 .OnDelete(DeleteBehavior.Restrict);
             });
-
         }
 
     }

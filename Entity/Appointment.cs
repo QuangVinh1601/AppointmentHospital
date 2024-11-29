@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
-using AppointmentHospital.Enum;
+using AppointmentHospital.EnumStatus;
 
 namespace AppointmentHospital.Models
 {

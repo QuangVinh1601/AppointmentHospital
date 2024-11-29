@@ -6,6 +6,7 @@ D:\Mainbridge\Project\AppointmentHospital\obj\Debug\net8.0\AppointmentHospital.c
 D:\Mainbridge\Project\AppointmentHospital\obj\Debug\net8.0\AppointmentHospital.MvcApplicationPartsAssemblyInfo.cache
 D:\Mainbridge\Project\AppointmentHospital\obj\Debug\net8.0\AppointmentHospital.RazorAssemblyInfo.cache
 D:\Mainbridge\Project\AppointmentHospital\obj\Debug\net8.0\AppointmentHospital.RazorAssemblyInfo.cs
+D:\Mainbridge\Project\AppointmentHospital\obj\Debug\net8.0\AppointmentHospital.sourcelink.json
 D:\Mainbridge\Project\AppointmentHospital\bin\Debug\net8.0\appsettings.Development.json
 D:\Mainbridge\Project\AppointmentHospital\bin\Debug\net8.0\appsettings.json
 D:\Mainbridge\Project\AppointmentHospital\bin\Debug\net8.0\AppointmentHospital.staticwebassets.runtime.json

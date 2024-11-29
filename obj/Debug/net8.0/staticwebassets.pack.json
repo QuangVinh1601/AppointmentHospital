@@ -9,12 +9,20 @@
       "PackagePath": "staticwebassets\\css\\account.css"
     },
     {
+      "Id": "D:\\Mainbridge\\Project\\AppointmentHospital\\wwwroot\\css\\create.css",
+      "PackagePath": "staticwebassets\\css\\create.css"
+    },
+    {
       "Id": "D:\\Mainbridge\\Project\\AppointmentHospital\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
       "Id": "D:\\Mainbridge\\Project\\AppointmentHospital\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "D:\\Mainbridge\\Project\\AppointmentHospital\\wwwroot\\images\\hospital.png",
+      "PackagePath": "staticwebassets\\images\\hospital.png"
     },
     {
       "Id": "D:\\Mainbridge\\Project\\AppointmentHospital\\wwwroot\\js\\site.js",

@@ -1,4 +1,4 @@
-﻿namespace AppointmentHospital.Enum
+﻿namespace AppointmentHospital.EnumStatus
 {
     public enum AppointmentStatus
     {
@@ -6,4 +6,5 @@
         Canceled,
         Confirmed
     }
+    
 }

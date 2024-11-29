@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using AppointmentHospital.Entity;
+using AppointmentHospital.EnumStatus;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AppointmentHospital.Models
@@ -12,14 +14,14 @@ namespace AppointmentHospital.Models
         [MaxLength(100)]
         public string FullName { get; set; }
 
-        [Required]
-        [MaxLength(50)]
-        public string Specializaiton { get; set; }
-        public string? AvailableTime { get; set; }
+        public Specialization Specializaiton { get; set; }
 
         public int ExperienceYear { get; set; }
 
         [ForeignKey("DoctorId")]       
         public User User { get;set; }
+        public ICollection<Appointment> Appointments { set; get; }
+        
+        public ICollection<TimeSlot> TimeSlots { set; get; }
     }
 }

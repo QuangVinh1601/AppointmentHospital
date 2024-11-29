@@ -43,7 +43,7 @@ namespace AppointmentHospital.Controllers
             }
             if (_contextAccessor.HttpContext.User.IsInRole("Admin"))
             {
-                return RedirectToAction("Index", "AdminDashBoard", new { area = "Admin" });
+                return RedirectToAction("Index", "ManagingPatient", new { area = "Admin" });
             }
             if (_contextAccessor.HttpContext.User.IsInRole("Patient"))
             {

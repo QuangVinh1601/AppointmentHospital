@@ -1,0 +1,163 @@
+﻿@using AppointmentHospital.Areas.Admin.DTOs.Appointment;
+@using AppointmentHospital.Helpers;
+@using AppointmentHospital.EnumStatus;
+@model Pagination<AppointmentResponse>;
+@{
+    var specializationList = ViewData["SpecializationList"] as List<SelectListItem>;
+    var statusList = ViewData["StatusList"] as List<SelectListItem>;
+    var searchTerm = ViewData["SearchTerm"] as string;
+    var specializationViewData = ViewData["Specialization"] as Specialization?;
+    
+}
+
+<div class="card shadow-sm mb-4">
+    <div class="card-body">
+        <form method="get" asp-action="Index" class="row g-3 align-items-end justify-content-center">
+            <div asp-validation-summary="ModelOnly"></div>
+            <div class="col-md-5">
+                <label class="form-label">Tìm kiếm</label>
+                <div class="input-group">
+                    <span class="input-group-text">
+                        <i class="bi bi-search"></i>
+                    </span>
+                    <input name="searchTerm"
+                           class="form-control"
+                           placeholder="Enter patient name or doctor name"
+                           value="@searchTerm">
+                </div>
+            </div>
+                <div class="col-md-3">
+                    <label class="form-label">Status</label>
+                    <select name="specialization" class="form-select">
+                        @if (!specializationViewData.HasValue)
+                        {
+                            <option value="" disabled selected>Chọn chuyên khoa</option>
+                        }
+                        else
+                        {
+                            <option value="" disabled>Chọn chuyên khoa</option>
+                        }
+
+                        @foreach (var specialization in specializationList)
+                        {
+                        if(specializationViewData.HasValue)
+                        {
+                            @if (specialization.Value == ((int)specializationViewData).ToString())
+                            {
+                                <option value="@specialization.Value" selected>@specialization.Text</option>
+                            }
+                            else
+                            {
+                                <option value="@specialization.Value">@specialization.Text</option>
+                            }
+                        }
+                        else
+                        {
+                            <option value="@specialization.Value">@specialization.Text</option>
+                        }
+
+                    }
+                    </select>
+                </div>
+            <div class="col-md-1">
+                <button type="submit" class="btn btn-primary w-100">
+                    <i class="bi bi-search me-2"></i>Tìm kiếm
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="card shadow-sm">
+    <div class="card-header bg-white py-3">
+        <div class="row align-items-center">
+            <div class="col">
+                <h5 class="mb-0">Dashboard Doctor</h5>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th class="text-dark text-decoration-none">Patient</th>
+                        <th class="text-dark text-decoration-none">Doctor</th>
+                        <th class="text-dark text-decoration-none">Appointment Time</th>
+                        <th class="text-dark text-decoration-none">Specialization</th>
+                        <th class="text-dark text-decoration-none">Status</th>
+                        <th class="text-end">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var response in Model)
+                    {
+                        <tr>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <div class="ms-2">
+                                        <h6 class="mb-0">@response.PatientName</h6>
+                                        <small class="text-muted">ID: @response.PatientId</small>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <div class="ms-2">
+                                        <h6 class="mb-0">@response.DoctorName</h6>
+                                        <small class="text-muted">ID: @response.DoctorId</small>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                @response.AppointmentTime.ToString("yyyy-MM-dd HH:mm:ss")
+                            </td>
+                            <td>
+                                @response.Specialization
+                            </td>
+                            @{
+                                var colorBadge = response.Status.ToString() switch
+                                {
+                                    "Pending" => "secondary",
+                                    "Confimed" => "success",
+                                    "Canceled" => "danger", 
+                                                };
+                            }
+                            <td>
+                                <span class="badge bg-@colorBadge ">@response.Status</span>
+                            </td>
+                            <td>
+                                <a asp-action="Detail" asp-route-id ="@response.AppointmentId">Xem chi tiết</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <nav class="mt-2 d-flex justify-content-center" aria-label="...">
+        @{
+            <ul class="pagination">
+                <li class="page-item @(!Model.HasPreviousPage ? "disabled" : "") ">
+                    <a class="page-link" asp-action="Index" asp-route-page="@(Model.CurrentPage-1)">Previous</a>
+                </li>
+                @for (int i = 1; i <= Model.TotalPage; i++)
+                {
+                    <li class="page-item @(Model.CurrentPage == @i ? "active": "" )">
+                        <a class="page-link" asp-action="Index" as asp-route-page="@i">@i</a>
+                    </li>
+                }
+                <li class="page-item  @(!Model.HasNextPage? "disabled": "")">
+                    <a class="page-link" asp-action="Index" asp-route-page="@(Model.CurrentPage+1)">Next</a>
+                </li>
+            </ul>
+        }
+    </nav>
+
+</div>
+
+@section Styles {
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css" />
+}

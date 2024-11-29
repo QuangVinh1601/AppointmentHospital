@@ -7,6 +7,10 @@ using AppointmentHospital.Repositories;
 using AppointmentHospital.Repositories.Implement;
 using AppointmentHospital.Services;
 using AppointmentHospital.Services.Implement;
+using AppointmentHospital.Areas.Admin.Repositories;
+using AppointmentHospital.Areas.Admin.Repositories.Implement;
+using AppointmentHospital.Areas.Admin.Services;
+using AppointmentHospital.Areas.Admin.Services.Implement;
 
 
 namespace AppointmentHospital
@@ -24,7 +28,14 @@ namespace AppointmentHospital
             builder.Services.AddScoped<SeedData>();
             builder.Services.AddScoped<IAccountService, AccountService>();
             builder.Services.AddScoped<IAccountRepository, AccountRepository>();
-
+            builder.Services.AddScoped<IManagingPatientRepository, ManagingPatientRepository>();
+            builder.Services.AddScoped<IManagingPatientService, ManagingPatientService>();
+            builder.Services.AddScoped<IManagingDoctorRepository, ManagingDoctorRepository>();
+            builder.Services.AddScoped<IManagingDoctorService, ManagingDoctorService>();
+            builder.Services.AddScoped<IAppointmentService, AppointmentService>();
+            builder.Services.AddScoped<IAppointmentRepository, AppointmentRepository>();
+            builder.Services.AddScoped<IAppointmentStatisticService, AppointmentStatisticService>();
+            builder.Services.AddScoped<IAppointmentStatisticRepository, AppointmentStatisticRepository>();
 
             builder.Services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString("AppointmentHospitalDB")));

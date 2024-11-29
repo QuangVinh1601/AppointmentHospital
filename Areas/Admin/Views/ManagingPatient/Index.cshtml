@@ -1,0 +1,120 @@
+﻿@using AppointmentHospital.Areas.Admin.DTOs.AdminDashBoard;
+@using AppointmentHospital.Helpers;
+@{
+    var patientList = ViewBag.PatientList as Pagination<ManagingPatientResponse>;
+    var searchTerm = ViewBag.SearchTerm as string;
+}
+
+<div class="card shadow-sm mb-4">
+    <div class="card-body">
+        <form method="get" asp-action="Index" class="row g-3 align-items-end justify-content-center">
+            <div asp-validation-summary="ModelOnly"></div>
+            <div class="col-md-5">
+                <label class="form-label">Search Items</label>
+                <div class="input-group">
+                    <span class="input-group-text">
+                        <i class="bi bi-search"></i>
+                    </span>
+                    <input name="searchTerm"
+                           class="form-control"
+                           placeholder="Enter author or title..."
+                           value="@searchTerm">
+                </div>
+            </div>
+            <div class="col-md-2">
+                <button type="submit" class="btn btn-primary w-100">
+                    <i class="bi bi-search me-2"></i>Search
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="card shadow-sm">
+    <div class="card-header bg-white py-3">
+        <div class="row align-items-center">
+            <div class="col">
+                <h5 class="mb-0">Dashboard Patients</h5>
+            </div>
+            <div class="col-auto">
+                <a asp-action="CreatePatient" class="btn btn-primary btn-sm">Add New Patient</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th class="text-dark text-decoration-none">Full Name</th>
+                        <th class="text-dark text-decoration-none">Email Address</th>
+                        <th class="text-dark text-decoration-none">Address</th>
+                        <th class="text-dark text-decoration-none">Date Of Birth</th>
+                        <th class="text-dark text-decoration-none">Phone Number</th>
+                        <th class="text-end">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var patient in patientList)
+                    {
+                        <tr>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <div class="ms-2">
+                                        <h6 class="mb-0">@patient.FullName</h6>
+                                        <small class="text-muted">ID: @patient.Id</small>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>@patient.EmailAddress</td>
+                            <td>@patient.Address</td>
+                            <td>
+                                @patient.DateOfBirth
+                            </td>
+                            <td>
+                                @patient.PhoneNumber
+                            </td>
+                            <td>
+                                <div class="d-flex justify-content-end gap-2">
+                                    <a asp-action="EditPatient" asp-route-id="@patient.Id"
+                                       class="btn btn-outline-primary btn-sm">
+                                        <i class="bi bi-pencil-square"></i>
+                                    </a>
+                                    <a asp-action="DeletePatient" asp-route-id="@patient.Id"
+                                       class="btn btn-outline-danger btn-sm">
+                                        <i class="bi bi-trash"></i>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <nav class="mt-2 d-flex justify-content-center" aria-label="...">
+        @{
+            <ul class="pagination">
+                <li class="page-item @(!patientList.HasPreviousPage ? "disabled" : "") ">
+                    <a class="page-link" asp-action="Index" asp-route-page="@(patientList.CurrentPage-1)">Previous</a>
+                </li>
+                @for (int i = 1; i <= patientList.TotalPage; i++)
+                {
+                    <li class="page-item @(patientList.CurrentPage == @i ? "active": "" )">
+                        <a class="page-link"  asp-action="Index" as asp-route-page="@i">@i</a>
+                    </li>
+                }
+                <li class="page-item  @(!patientList.HasNextPage? "disabled": "")">
+                    <a class="page-link"  asp-action="Index" asp-route-page="@(patientList.CurrentPage+1)">Next</a>
+                </li>
+            </ul>
+        }
+    </nav>
+
+</div>
+
+@section Styles {
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css" />
+}

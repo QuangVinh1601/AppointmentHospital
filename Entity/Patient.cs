@@ -17,5 +17,6 @@ namespace AppointmentHospital.Models
         public DateTime? DateOfBirth { get; set; }
         [ForeignKey("PatientId")]
         public User User { set;get; }
+        public ICollection<Appointment> Appointments { set; get; }
     }
 }
