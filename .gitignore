@@ -237,10 +237,14 @@ ClientBin/
 *.dbproj.schemaview
 *.jfm
 <<<<<<< HEAD
+<<<<<<< HEAD
 # *.pfx
 =======
 *.pfx
 >>>>>>> 8172a2a (progress-homepage)
+=======
+# *.pfx
+>>>>>>> 4a195af (Remove tracked files ignored by .gitignore)
 *.publishsettings
 orleans.codegen.cs
 
@@ -400,5 +404,4 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
-
 **/.idea
