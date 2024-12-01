@@ -236,7 +236,11 @@ ClientBin/
 *.dbmdl
 *.dbproj.schemaview
 *.jfm
+<<<<<<< HEAD
 # *.pfx
+=======
+*.pfx
+>>>>>>> 8172a2a (progress-homepage)
 *.publishsettings
 orleans.codegen.cs
 
