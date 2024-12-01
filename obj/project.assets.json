@@ -5047,24 +5047,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\nguye\\.nuget\\packages\\": {},
-    "D:\\SDKs_VS\\NuGetPackages": {}
+    "C:\\Users\\Admin\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Mainbridge\\Project\\AppointmentHospital\\AppointmentHospital.csproj",
+      "projectUniqueName": "D:\\clone-Hospital\\AppointmentHospital\\AppointmentHospital.csproj",
       "projectName": "AppointmentHospital",
-      "projectPath": "D:\\Mainbridge\\Project\\AppointmentHospital\\AppointmentHospital.csproj",
-      "packagesPath": "C:\\Users\\nguye\\.nuget\\packages\\",
-      "outputPath": "D:\\Mainbridge\\Project\\AppointmentHospital\\obj\\",
+      "projectPath": "D:\\clone-Hospital\\AppointmentHospital\\AppointmentHospital.csproj",
+      "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+      "outputPath": "D:\\clone-Hospital\\AppointmentHospital\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "D:\\SDKs_VS\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\nguye\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
