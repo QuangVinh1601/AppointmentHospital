@@ -11,6 +11,9 @@ using AppointmentHospital.Areas.Admin.Repositories;
 using AppointmentHospital.Areas.Admin.Repositories.Implement;
 using AppointmentHospital.Areas.Admin.Services;
 using AppointmentHospital.Areas.Admin.Services.Implement;
+using AppointmentHospital.Configuration.EmailConfiguaration;
+using Hangfire;
+
 
 
 namespace AppointmentHospital
@@ -36,6 +39,9 @@ namespace AppointmentHospital
             builder.Services.AddScoped<IAppointmentRepository, AppointmentRepository>();
             builder.Services.AddScoped<IAppointmentStatisticService, AppointmentStatisticService>();
             builder.Services.AddScoped<IAppointmentStatisticRepository, AppointmentStatisticRepository>();
+            builder.Services.Configure<EmailConfiguration>(configuration.GetSection("SMTP"));
+            builder.Services.AddTransient<IEmailService, EmailService>();
+            
 
             builder.Services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString("AppointmentHospitalDB")));
@@ -74,13 +80,21 @@ namespace AppointmentHospital
                 options.LogoutPath = "/Identity/Account/Logout";
             });
 
+            builder.Services.AddHangfire(config =>
+            {
+                config.SetDataCompatibilityLevel(CompatibilityLevel.Version_180)
+                .UseSimpleAssemblyNameTypeSerializer()
+                .UseRecommendedSerializerSettings()
+                .UseSqlServerStorage(configuration.GetConnectionString("AppointmentHospitalDB"));
+            });
+            builder.Services.AddHangfireServer();
+
             var app = builder.Build();
             using(var scope = app.Services.CreateScope())
             {
                 var seedData = scope.ServiceProvider.GetService<SeedData>();
                 seedData.InitialData().Wait();
             }
-
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
             {
@@ -96,6 +110,8 @@ namespace AppointmentHospital
             app.UseAuthentication();
             app.UseAuthorization();
 
+            app.UseHangfireDashboard();
+
 
             app.MapAreaControllerRoute(
             name: "admin",
@@ -105,6 +121,8 @@ namespace AppointmentHospital
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Account}/{action=Login}/{id?}");
+
+            app.MapHangfireDashboard("/hangfire");
 
             app.Run();
         }

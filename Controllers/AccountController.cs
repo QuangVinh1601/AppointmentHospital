@@ -21,6 +21,10 @@ namespace AppointmentHospital.Controllers
             _userManager = userManager;
             _signInManager = signInManager;
         }
+        public IActionResult ForgetPassword()
+        {
+            return View(new ForgetPassword { EmailAddress = string.Empty });
+        }
         public IActionResult Login()
         {
             return View(new LoginUserRequest() { Email = string.Empty, Password = string.Empty });
