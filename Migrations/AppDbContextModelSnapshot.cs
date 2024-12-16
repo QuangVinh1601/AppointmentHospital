@@ -98,6 +98,10 @@ namespace AppointmentHospital.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<string>("ImagePath")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("Specializaiton")
                         .HasColumnType("int");
 

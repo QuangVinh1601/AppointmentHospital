@@ -18,10 +18,13 @@ namespace AppointmentHospital.Models
 
         public int ExperienceYear { get; set; }
 
+        public string ImagePath { get; set; }
+
         [ForeignKey("DoctorId")]       
-        public User User { get;set; }
-        public ICollection<Appointment> Appointments { set; get; }
+        public User User { get; set; }
         
-        public ICollection<TimeSlot> TimeSlots { set; get; }
+        public ICollection<Appointment> Appointments { get; set; }
+        
+        public ICollection<TimeSlot> TimeSlots { get; set; }
     }
 }
