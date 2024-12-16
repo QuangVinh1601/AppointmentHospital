@@ -43,6 +43,9 @@ namespace AppointmentHospital
             builder.Services.AddTransient<IEmailService, EmailService>();
             
 
+            builder.Services.AddScoped<IDoctorRepository, DoctorRepository>();
+            builder.Services.AddScoped<IDoctorService, DoctorService>();
+
             builder.Services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString("AppointmentHospitalDB")));
 
@@ -110,9 +113,12 @@ namespace AppointmentHospital
             app.UseAuthentication();
             app.UseAuthorization();
 
+<<<<<<< HEAD
             app.UseHangfireDashboard();
 
 
+=======
+>>>>>>> a977bd499b432bde33feb1d1850c929f9c5f22c2
             app.MapAreaControllerRoute(
             name: "admin",
             areaName: "Admin",
@@ -121,6 +127,10 @@ namespace AppointmentHospital
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Account}/{action=Login}/{id?}");
+            
+            app.MapControllerRoute(
+                name: "default",
+                pattern: "{controller=Home}/{action=Index}/{id?}");
 
             app.MapHangfireDashboard("/hangfire");
 
