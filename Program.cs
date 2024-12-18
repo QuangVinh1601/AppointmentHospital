@@ -112,13 +112,7 @@ namespace AppointmentHospital
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
-
-<<<<<<< HEAD
             app.UseHangfireDashboard();
-
-
-=======
->>>>>>> a977bd499b432bde33feb1d1850c929f9c5f22c2
             app.MapAreaControllerRoute(
             name: "admin",
             areaName: "Admin",

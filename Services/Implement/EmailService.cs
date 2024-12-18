@@ -34,12 +34,28 @@ namespace AppointmentHospital.Services.Implement
             return content;
         }
 
+        public async Task<string> GetConfirmedEmailTemplate(string fullUserName, string url)
+        {
+             var content = await System.IO.File.ReadAllTextAsync(Path.Combine(_webHostEnvironment.WebRootPath, "assets", "template", "mails", "confirmedEmail.html"));
+             content = content.Replace("{{fullUserName}}", fullUserName);
+             content = content.Replace("{{confirmationLink}}", url);
+             return content;
+        }
+
         public async Task<string> GetRemindedTemplate(DateTime appointmentTime, string doctorName, string fullUserName)
         {
             string content = await System.IO.File.ReadAllTextAsync(Path.Combine(_webHostEnvironment.WebRootPath, "assets", "template", "mails", "remindedTemplate.html"));
             content = content.Replace("{{fullUserName}}", fullUserName);
             content = content.Replace("{{appointmentTime}}", appointmentTime.ToString("dd/MM/yyyy HH:mm"));
             content = content.Replace("{{doctorName}}", doctorName);
+            return content;
+        }
+
+        public async Task<string> GetResetPasswordTemplate(string fullUserName, string url)
+        {
+            var content = await System.IO.File.ReadAllTextAsync(Path.Combine(_webHostEnvironment.WebRootPath, "assets", "template", "mails", "resetPasswordTemplate.html"));
+            content = content.Replace("{{fullUserName}}", fullUserName);
+            content = content.Replace("{{resetPasswordLink}}", url);
             return content;
         }
 
