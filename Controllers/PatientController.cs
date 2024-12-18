@@ -1,4 +1,5 @@
-﻿using AppointmentHospital.Models;
+﻿using AppointmentHospital.Entity;
+using AppointmentHospital.Models;
 using AppointmentHospital.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -22,10 +23,31 @@ namespace AppointmentHospital.Controllers
             return View(doctors);
         }
 
-        public IActionResult BookSchedule(Guid id){
-            _logger.LogInformation("Doctor Id: " + id);
-            String DoctorName = doctorService.getDoctorNameByDoctorId(id);
-            return View((object)DoctorName);
+        [HttpPost]
+        public IActionResult BookSchedule(Guid DoctorId, String selectedDate, String selectedTime){
+            DateTime appointmentDateTime = DateTime.Parse($"{selectedDate} {selectedTime}");
+            String DoctorName = doctorService.getDoctorNameByDoctorId(DoctorId);
+            var model = new
+            {
+                DoctorName = DoctorName,
+                AppointmentDateTime = appointmentDateTime
+            };
+
+            return View(model);
+        }
+
+        public IActionResult DetailDoctor(Guid id)
+        {
+            Doctor doctor = doctorService.getDoctorById(id);
+            List<TimeSlot> timeSlots = doctorService.getTimeSlotByDoctorId(id);
+
+            var viewModel = new DoctorDetailViewModel
+            {
+                Doctor = doctor,
+                TimeSlots = timeSlots
+            };
+
+            return View(viewModel);
         }
     }
 }

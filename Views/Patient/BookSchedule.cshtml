@@ -1,43 +1,35 @@
 ﻿<link rel="stylesheet" href="~/css/book-schedule.css" asp-append-version="true" />
-@model string
+@model dynamic
 <div class="modal-content">
     <div class="modal-header">
         <h5 class="modal-title">BOOK APPOINTMENT</h5>
     </div>
     <div class="modal-body">
         <div class="doctor-info mb-3">
-            <p class="mb-1">Doctor: @Model</p>
-            <p class="mb-3">Appointment Time: 8:00 - 9:00 - Wednesday - 09/08/2023</p>
-            
+            <p class="mb-1">Doctor: @Model.DoctorName</p>
+            <p class="mb-3">Appointment Time: @Model.AppointmentDateTime.ToString("f")</p>
+
             <div class="booking-type mb-3">
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="bookingType" id="forSelf" value="self" checked>
+                    <input class="form-check-input" type="radio" name="bookingType" id="forSelf" value="self" checked onchange="togglePatientInfo()">
                     <label class="form-check-label" for="forSelf">For Myself</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="bookingType" id="forOther" value="other">
+                    <input class="form-check-input" type="radio" name="bookingType" id="forOther" value="other" onchange="togglePatientInfo()">
                     <label class="form-check-label" for="forOther">For Someone Else</label>
                 </div>
             </div>
         </div>
 
         <form id="bookingForm">
-            <div class="booking-section mb-4">
-                <h6 class="text-info">Booker's Information</h6>
-                <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <input type="text" class="form-control" placeholder="Booker's Full Name">
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <input type="tel" class="form-control" placeholder="Booker's Phone Number">
-                    </div>
-                </div>
+            <div id="self-section" class="patient-section">
+                <h6 class="text-info">Symptoms</h6>
                 <div class="mb-3">
-                    <input type="email" class="form-control" placeholder="Email (required)">
+                    <textarea class="form-control" rows="4" placeholder="Reason for Appointment"></textarea>
                 </div>
             </div>
 
-            <div class="patient-section">
+            <div id="other-section" class="patient-section" style="display: none;">
                 <h6 class="text-info">Patient's Information</h6>
                 <div class="mb-3">
                     <input type="text" class="form-control" placeholder="Patient's Full Name (required)">
@@ -64,7 +56,8 @@
                         <input type="tel" class="form-control" placeholder="Patient's Phone Number">
                     </div>
                     <div class="col-md-6">
-                        <input type="text" class="form-control" placeholder="Year of Birth (required) e.g., 01/27/2001">
+                        <input id="scheduleDate" type="date" class="form-control" 
+                                min="@DateTime.Now.ToString("yyyy-MM-dd")">
                     </div>
                 </div>
 
@@ -79,13 +72,6 @@
                 <div class="mb-3">
                     <textarea class="form-control" rows="4" placeholder="Reason for Appointment"></textarea>
                 </div>
-
-                <div class="fee-info">
-                    <div class="d-flex justify-content-between">
-                        <span>Consultation Fee</span>
-                        <span>300000 VND</span>
-                    </div>
-                </div>
             </div>
         </form>
     </div>
@@ -93,3 +79,11 @@
         <button type="button" class="btn btn-primary">Confirm Appointment</button>
     </div>
 </div>
+
+<script>
+    function togglePatientInfo() {
+        const forSelf = document.getElementById('forSelf').checked;
+        document.getElementById('self-section').style.display = forSelf ? 'block' : 'none';
+        document.getElementById('other-section').style.display = forSelf ? 'none' : 'block';
+    }
+</script>

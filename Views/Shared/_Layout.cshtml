@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="~/css/layout.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
     @RenderSection("Styles", required: false)
 </head>
 <body>
@@ -55,20 +56,39 @@
                         </div>
                         @if (User.Identity.IsAuthenticated)
                         {
-                            <ul class="nav align-items-center">
-                                <li class="nav-item me-3">
-                                    <span class="nav-link text-primary">Hi, @User.Identity?.Name!</span>
-                                </li>
-                                <li class="nav-item">
-                                    <form asp-action="Logout" asp-controller="Account" method="post" class="mb-0">
-                                        <button class="btn btn-link nav-link text-danger">
-                                            <i class="bi bi-box-arrow-right"></i> Logout
-                                        </button>
-                                    </form>
-                                </li>
-                            </ul>
+                            <div class="dropdown">
+                                <a class="nav-link dropdown-toggle text-primary" href="#" id="userDropdown" role="button" 
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                    Hi, @User.Identity?.Name!
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                                    <li>
+                                        <a class="dropdown-item" href="/profile">
+                                            <i class="bi bi-person-circle"></i> Profile
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="/mySchedule">
+                                            <i class="bi bi-person-circle"></i> mySchedule
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="/settings">
+                                            <i class="bi bi-gear"></i> Settings
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <form asp-action="Logout" asp-controller="Account" method="post" class="dropdown-item m-0 p-0">
+                                            <button class="btn btn-link text-danger w-100 text-start">
+                                                <i class="bi bi-box-arrow-right"></i> Logout
+                                            </button>
+                                        </form>
+                                    </li>
+                                </ul>
+                            </div>
                         }
                     </div>
+
 
                 </div>
             </div>
