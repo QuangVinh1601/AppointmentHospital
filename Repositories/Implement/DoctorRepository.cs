@@ -1,6 +1,7 @@
 using System;
 using AppointmentHospital.Entity;
 using AppointmentHospital.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace AppointmentHospital.Repositories.Implement;
 
@@ -16,7 +17,9 @@ public class DoctorRepository : IDoctorRepository
     }
 
     public Doctor getDoctorById(Guid doctorId){
-        return _context.Doctors.Find(doctorId)!;
+        return _context.Doctors
+        .Include(d => d.User)
+        .FirstOrDefault(d => d.DoctorId == doctorId)!;
     }
 
     public List<TimeSlot> getTimeSlotByDoctorId(Guid doctorId){

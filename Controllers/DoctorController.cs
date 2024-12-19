@@ -24,18 +24,5 @@ namespace AppointmentHospital.Controllers
             return View(doctor);
         }
 
-        public IActionResult Detail(Guid id)
-        {
-            Doctor doctor = doctorService.getDoctorById(id);
-            List<TimeSlot> timeSlots = doctorService.getTimeSlotByDoctorId(id);
-
-            var viewModel = new DoctorDetailViewModel
-            {
-                Doctor = doctor,
-                TimeSlots = timeSlots
-            };
-
-            return View(viewModel);
-        }
     }
 }
