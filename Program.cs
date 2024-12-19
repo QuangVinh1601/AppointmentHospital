@@ -13,6 +13,8 @@ using AppointmentHospital.Areas.Admin.Services;
 using AppointmentHospital.Areas.Admin.Services.Implement;
 using AppointmentHospital.Configuration.EmailConfiguaration;
 using Hangfire;
+using AppointmentHospital.Configuration.BaseUrl;
+using DotNetEnv;
 
 
 
@@ -24,6 +26,7 @@ namespace AppointmentHospital
         {
 
             var builder = WebApplication.CreateBuilder(args);
+            Env.Load();
             // Add services to the container.
             builder.Services.AddControllersWithViews();
             var configuration = builder.Configuration;
@@ -40,12 +43,23 @@ namespace AppointmentHospital
             builder.Services.AddScoped<IAppointmentStatisticService, AppointmentStatisticService>();
             builder.Services.AddScoped<IAppointmentStatisticRepository, AppointmentStatisticRepository>();
             builder.Services.Configure<EmailConfiguration>(configuration.GetSection("SMTP"));
+            builder.Services.Configure<BaseUrl>(configuration.GetSection("BaseUrl"));
             builder.Services.AddTransient<IEmailService, EmailService>();
             
 
             builder.Services.AddScoped<IDoctorRepository, DoctorRepository>();
             builder.Services.AddScoped<IDoctorService, DoctorService>();
 
+            builder.Services.AddAuthentication().AddGoogle(option =>
+            {
+                var clientId = Environment.GetEnvironmentVariable("GOOGLE_CLIENTID");
+                var clientSecret = Environment.GetEnvironmentVariable("GOOGLE_CLIENTSECRET");
+                option.CallbackPath = "/dang-nhap-bang-google";
+                option.ClientId = clientId;
+                option.ClientSecret = clientSecret;
+            });
+            builder.Services.AddScoped<IAppointmentDateRepository, AppointmentDateRepository>();
+            
             builder.Services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString("AppointmentHospitalDB")));
 
