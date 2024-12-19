@@ -24,7 +24,8 @@ namespace AppointmentHospital.Controllers
         private readonly SignInManager<User> _signInManager;
         private readonly IEmailService _emailService;
         private readonly IOptions<BaseUrl> _options;
-        public AccountController(IAccountService accountService, IOptions<BaseUrl> options ,IEmailService emailService, IHttpContextAccessor contextAccessor, UserManager<User> userManager, SignInManager<User> signInManager)
+        private readonly AppDbContext _appDbContext;
+        public AccountController(IAccountService accountService, AppDbContext appDbContext ,IOptions<BaseUrl> options ,IEmailService emailService, IHttpContextAccessor contextAccessor, UserManager<User> userManager, SignInManager<User> signInManager)
         {
             _accountService = accountService;
             _contextAccessor = contextAccessor;
@@ -32,6 +33,7 @@ namespace AppointmentHospital.Controllers
             _signInManager = signInManager;
             _emailService = emailService;
             _options = options;
+            _appDbContext = appDbContext;
         }
         public IActionResult ForgetPassword()
         {
@@ -43,7 +45,7 @@ namespace AppointmentHospital.Controllers
         }
         public IActionResult Register()
         {
-            return View(new RegisterUserRequest() { ConfirmPassword = string.Empty, Email = string.Empty, FullName = string.Empty, Password = string.Empty });
+            return View(new RegisterUserRequest() { Email = string.Empty, FullName = string.Empty, Password = string.Empty, ConfirmPassword = string.Empty, Address = string.Empty });
         }
         [HttpPost]
         public async Task<IActionResult> Login(LoginUserRequest request)
@@ -52,22 +54,32 @@ namespace AppointmentHospital.Controllers
             {
                 return View(request);
             }
-            if (!await _accountService.LoginAsync(request))
+            var result = await _accountService.LoginAsync(request);
+            if(result.Status == 403)
             {
-                var user = await _userManager.FindByEmailAsync(request.Email);
-                await SendMail(user);
-                return View("ConfirmEmail", request.Email);
+                ModelState.AddModelError("", "Please confirmed before login");
+                var userFounded = await _userManager.FindByEmailAsync(request.Email);
+                await SendMail(userFounded);
+                return View(request);
+            }
+            if (result.Status == 400)
+            {
+                ModelState.AddModelError("", "Incorrect password, please write correct password");
+                return View(request);
             }
             if (_contextAccessor.HttpContext.User.IsInRole("Admin"))
             {
                 return RedirectToAction("Index", "ManagingPatient", new { area = "Admin" });
             }
-            if (_contextAccessor.HttpContext.User.IsInRole("Patient"))
+            var user = await _userManager.FindByEmailAsync(request.Email);
+            if (user != null && _contextAccessor.HttpContext != null && _contextAccessor.HttpContext.User.IsInRole("Patient"))
             {
+                _contextAccessor.HttpContext.Session.SetString("PatientId", user.Id.ToString());
                 return RedirectToAction("Index", "Patient");
             }
-            if (_contextAccessor.HttpContext.User.IsInRole("Doctor"))
+            if (user != null && _contextAccessor.HttpContext != null && _contextAccessor.HttpContext.User.IsInRole("Doctor"))
             {
+                _contextAccessor.HttpContext.Session.SetString("DoctorId", user.Id.ToString());
                 return RedirectToAction("Index", "Doctor");
             }
             return View(request);
@@ -99,6 +111,8 @@ namespace AppointmentHospital.Controllers
             var loginResult = await _signInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, false);
             if(loginResult.Succeeded)
             {
+                var userId = _accountService.GetIdByEmail(info.Principal.FindFirstValue(ClaimTypes.Email));
+                _contextAccessor.HttpContext.Session.SetString("PatientId", userId.ToString());
                 return RedirectToAction("Index", "Patient");
             }
             else
@@ -109,7 +123,6 @@ namespace AppointmentHospital.Controllers
                     externalMail = info.Principal.FindFirstValue(ClaimTypes.Email) ?? "null";
                 }
                 var user = await _userManager.FindByEmailAsync(externalMail);
-                //User isn't existed -> Create new user - Confirmed email - Link
                 if (user == null)
                 {
                     if(user == null)
@@ -120,8 +133,16 @@ namespace AppointmentHospital.Controllers
                             Email = externalMail
                         };
                         var createResult = await _userManager.CreateAsync(newUser);
+                        var patient = new Patient
+                        {
+                            FullName = externalMail,
+                            User = newUser,
+                        };
                         if (createResult.Succeeded)
                         {
+                            await _userManager.AddToRoleAsync(newUser, "Patient");
+                            await _appDbContext.AddAsync(patient);
+                            await _appDbContext.SaveChangesAsync();
                             var addLoginNewUserResult = await _userManager.AddLoginAsync(newUser, info);
                             if (addLoginNewUserResult.Succeeded)
                             {
@@ -143,6 +164,7 @@ namespace AppointmentHospital.Controllers
                         return RedirectToAction("Login");
                     }
                     var addLoginResult = await _userManager.AddLoginAsync(user, info);
+                    await _signInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, false);
                     if (!addLoginResult.Succeeded)
                     {
                         return RedirectToAction("Login");
@@ -151,6 +173,7 @@ namespace AppointmentHospital.Controllers
                 }
                 //Existed user but dont link with external provider
                 var addResult=  await _userManager.AddLoginAsync(user, info);
+                await _signInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, false);
                 if(!addResult.Succeeded)
                 {
                     return RedirectToAction("Login");

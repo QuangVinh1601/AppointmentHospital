@@ -18,6 +18,9 @@ namespace AppointmentHospital.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "9.0.0")
+                .HasAnnotation("Proxies:ChangeTracking", false)
+                .HasAnnotation("Proxies:CheckEquality", false)
+                .HasAnnotation("Proxies:LazyLoading", true)
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -27,6 +30,9 @@ namespace AppointmentHospital.Migrations
                     b.Property<Guid>("TimeSlotId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("Available")
+                        .HasColumnType("bit");
 
                     b.Property<Guid>("DoctorId")
                         .HasColumnType("uniqueidentifier");
@@ -41,7 +47,7 @@ namespace AppointmentHospital.Migrations
 
                     b.HasIndex("DoctorId");
 
-                    b.ToTable("TimeSlots", (string)null);
+                    b.ToTable("TimeSlots");
                 });
 
             modelBuilder.Entity("AppointmentHospital.Models.Acquaintance", b =>
@@ -122,6 +128,9 @@ namespace AppointmentHospital.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid?>("AcquaintanceId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<DateTime>("AppointmentTime")
                         .HasColumnType("datetime2");
 
@@ -155,11 +164,13 @@ namespace AppointmentHospital.Migrations
 
                     b.HasKey("AppointmentId");
 
+                    b.HasIndex("AcquaintanceId");
+
                     b.HasIndex("DoctorId");
 
                     b.HasIndex("PatientId");
 
-                    b.ToTable("Appointments", (string)null);
+                    b.ToTable("Appointments");
                 });
 
             modelBuilder.Entity("AppointmentHospital.Models.Doctor", b =>
@@ -199,7 +210,7 @@ namespace AppointmentHospital.Migrations
 
                     b.HasKey("DoctorId");
 
-                    b.ToTable("Doctors", (string)null);
+                    b.ToTable("Doctors");
                 });
 
             modelBuilder.Entity("AppointmentHospital.Models.Patient", b =>
@@ -221,7 +232,7 @@ namespace AppointmentHospital.Migrations
 
                     b.HasKey("PatientId");
 
-                    b.ToTable("Patients", (string)null);
+                    b.ToTable("Patients");
                 });
 
             modelBuilder.Entity("AppointmentHospital.Models.User", b =>
@@ -445,6 +456,10 @@ namespace AppointmentHospital.Migrations
 
             modelBuilder.Entity("AppointmentHospital.Models.Appointment", b =>
                 {
+                    b.HasOne("AppointmentHospital.Models.Acquaintance", "Acquaintance")
+                        .WithMany("Appointment")
+                        .HasForeignKey("AcquaintanceId");
+
                     b.HasOne("AppointmentHospital.Models.Doctor", "Doctor")
                         .WithMany("Appointments")
                         .HasForeignKey("DoctorId")
@@ -456,6 +471,8 @@ namespace AppointmentHospital.Migrations
                         .HasForeignKey("PatientId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
+
+                    b.Navigation("Acquaintance");
 
                     b.Navigation("Doctor");
 
@@ -533,6 +550,11 @@ namespace AppointmentHospital.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("AppointmentHospital.Models.Acquaintance", b =>
+                {
+                    b.Navigation("Appointment");
                 });
 
             modelBuilder.Entity("AppointmentHospital.Models.Doctor", b =>

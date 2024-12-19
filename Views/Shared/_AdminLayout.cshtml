@@ -117,17 +117,22 @@
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
                             <a class="nav-link" asp-area="Admin" asp-controller="ManagingPatient" asp-action="Index">
-                                <i class="fa-solid fa-book me-1"></i>Calendar
+                                <i class="fa-solid fa-bed-pulse me-1"></i>Patient
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" asp-area="Admin" asp-controller="ManagingDoctor" asp-action="Index">
-                                <i class="fas fa-users me-1"></i>Appointment                            
+                                <i class="fas fa-users me-1"></i>Doctor                            
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" asp-area="Admin" asp-controller="Appointment" asp-action="Index">
-                                <i class="fa-solid fa-clock-rotate-left me-1"></i>Caring
+                                <i class="fa-solid fa-clock-rotate-left me-1"></i>Appointment
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="Admin" asp-controller="Statistic" asp-action="Index">
+                                <i class="fa-solid fa-chart-simple me-1"></i>Statistic
                             </a>
                         </li>
                     </ul>
@@ -148,12 +153,6 @@
             @RenderBody()
         </main>
     </div>
-
-    <footer class="border-top footer text-muted">
-        <div class="footer-container text-center">
-            &copy; 2024 - ManagingLibrary - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

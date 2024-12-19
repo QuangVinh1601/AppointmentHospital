@@ -29,6 +29,20 @@ namespace AppointmentHospital
             Env.Load();
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            //builder.Services.AddControllers()
+            //.AddJsonOptions(options =>
+            //{
+            //    options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve;
+            //    options.JsonSerializerOptions.DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull;
+            //});
+
+
+            builder.Services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(30);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
             var configuration = builder.Configuration;
             builder.Services.AddHttpContextAccessor();
             builder.Services.AddScoped<SeedData>();
@@ -38,13 +52,25 @@ namespace AppointmentHospital
             builder.Services.AddScoped<IManagingPatientService, ManagingPatientService>();
             builder.Services.AddScoped<IManagingDoctorRepository, ManagingDoctorRepository>();
             builder.Services.AddScoped<IManagingDoctorService, ManagingDoctorService>();
+            builder.Services.AddScoped<IStatisticService, StatisticService>();
+            builder.Services.AddScoped<IStatisticRepository, StatisticRepository>();
             builder.Services.AddScoped<IAppointmentService, AppointmentService>();
             builder.Services.AddScoped<IAppointmentRepository, AppointmentRepository>();
-            builder.Services.AddScoped<IAppointmentStatisticService, AppointmentStatisticService>();
-            builder.Services.AddScoped<IAppointmentStatisticRepository, AppointmentStatisticRepository>();
+     
+            builder.Services.AddScoped<IPatientService, PatientService>();
+            builder.Services.AddScoped<IPatientRepository, PatientRepository>();
             builder.Services.Configure<EmailConfiguration>(configuration.GetSection("SMTP"));
             builder.Services.Configure<BaseUrl>(configuration.GetSection("BaseUrl"));
             builder.Services.AddTransient<IEmailService, EmailService>();
+            
+
+            builder.Services.AddScoped<IDoctorRepository, DoctorRepository>();
+            builder.Services.AddScoped<IDoctorService, DoctorService>();
+            builder.Services.AddScoped<ITimeSlotRepository, TimeSlotRepository>();
+            builder.Services.AddScoped<ITimeSlotService, TimeSlotService>();
+
+            builder.Services.AddScoped<IAppointmentDateRepository, AppointmentDateRepository>();
+            builder.Services.AddScoped<IAppointmentDateService, AppointmentDateService>();
             
 
             builder.Services.AddScoped<IDoctorRepository, DoctorRepository>();
@@ -59,6 +85,7 @@ namespace AppointmentHospital
                 option.ClientSecret = clientSecret;
             });
             builder.Services.AddScoped<IAppointmentDateRepository, AppointmentDateRepository>();
+            builder.Services.AddScoped<IAppointmentDateService, AppointmentDateService>();
             
             builder.Services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString("AppointmentHospitalDB")));
@@ -92,7 +119,7 @@ namespace AppointmentHospital
             });
             builder.Services.ConfigureApplicationCookie(options =>
             {
-                options.ExpireTimeSpan = TimeSpan.FromMinutes(15);
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(45);
                 options.LoginPath = "/Identity/Account/Login";
                 options.LogoutPath = "/Identity/Account/Logout";
             });
@@ -105,6 +132,7 @@ namespace AppointmentHospital
                 .UseSqlServerStorage(configuration.GetConnectionString("AppointmentHospitalDB"));
             });
             builder.Services.AddHangfireServer();
+            builder.Services.AddSignalR();
 
             var app = builder.Build();
             using(var scope = app.Services.CreateScope())
@@ -116,17 +144,17 @@ namespace AppointmentHospital
             if (!app.Environment.IsDevelopment())
             {
                 app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            app.UseSession();
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
             app.UseHangfireDashboard();
+            app.MapHub<ScheduleHub>("/scheduleHub");
             app.MapAreaControllerRoute(
             name: "admin",
             areaName: "Admin",
