@@ -4,6 +4,7 @@ using AppointmentHospital.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AppointmentHospital.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241220021507_createNewDateBase")]
+    partial class createNewDateBase
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -89,9 +92,6 @@ namespace AppointmentHospital.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("AcquaintanceId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<DateTime>("AppointmentTime")
                         .HasColumnType("datetime2");
 
@@ -124,8 +124,6 @@ namespace AppointmentHospital.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("AppointmentId");
-
-                    b.HasIndex("AcquaintanceId");
 
                     b.HasIndex("DoctorId");
 
@@ -417,10 +415,6 @@ namespace AppointmentHospital.Migrations
 
             modelBuilder.Entity("AppointmentHospital.Models.Appointment", b =>
                 {
-                    b.HasOne("AppointmentHospital.Models.Acquaintance", "Acquaintance")
-                        .WithMany("Appointment")
-                        .HasForeignKey("AcquaintanceId");
-
                     b.HasOne("AppointmentHospital.Models.Doctor", "Doctor")
                         .WithMany("Appointments")
                         .HasForeignKey("DoctorId")
@@ -432,8 +426,6 @@ namespace AppointmentHospital.Migrations
                         .HasForeignKey("PatientId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
-
-                    b.Navigation("Acquaintance");
 
                     b.Navigation("Doctor");
 
@@ -511,11 +503,6 @@ namespace AppointmentHospital.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("AppointmentHospital.Models.Acquaintance", b =>
-                {
-                    b.Navigation("Appointment");
                 });
 
             modelBuilder.Entity("AppointmentHospital.Models.Doctor", b =>

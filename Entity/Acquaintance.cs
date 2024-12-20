@@ -32,9 +32,13 @@ namespace AppointmentHospital.Models
         public Guid PatientId { get; set; }
 
         [ForeignKey("PatientId")]
+<<<<<<< HEAD
         public Patient Patient { get; set; } 
 
         public ICollection<Appointment> Appointment { get; set; }
+=======
+        public virtual Patient Patient { get; set; } 
+>>>>>>> 1ed4583 (Update function schedule)
     }
 }
 
