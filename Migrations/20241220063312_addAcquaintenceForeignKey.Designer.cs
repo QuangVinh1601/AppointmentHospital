@@ -4,6 +4,7 @@ using AppointmentHospital.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AppointmentHospital.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241220063312_addAcquaintenceForeignKey")]
+    partial class addAcquaintenceForeignKey
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -122,7 +125,9 @@ namespace AppointmentHospital.Migrations
 
                     b.HasKey("AppointmentId");
 
-                    b.HasIndex("AcquaintanceId");
+                    b.HasIndex("AcquaintanceId")
+                        .IsUnique()
+                        .HasFilter("[AcquaintanceId] IS NOT NULL");
 
                     b.HasIndex("DoctorId");
 
@@ -415,8 +420,8 @@ namespace AppointmentHospital.Migrations
             modelBuilder.Entity("AppointmentHospital.Models.Appointment", b =>
                 {
                     b.HasOne("AppointmentHospital.Models.Acquaintance", "Acquaintance")
-                        .WithMany("Appointment")
-                        .HasForeignKey("AcquaintanceId");
+                        .WithOne("Appointment")
+                        .HasForeignKey("AppointmentHospital.Models.Appointment", "AcquaintanceId");
 
                     b.HasOne("AppointmentHospital.Models.Doctor", "Doctor")
                         .WithMany("Appointments")
@@ -512,7 +517,8 @@ namespace AppointmentHospital.Migrations
 
             modelBuilder.Entity("AppointmentHospital.Models.Acquaintance", b =>
                 {
-                    b.Navigation("Appointment");
+                    b.Navigation("Appointment")
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("AppointmentHospital.Models.Doctor", b =>
