@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -59,7 +59,7 @@
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
                                     <li>
-                                        <a class="dropdown-item" href="/profile">
+                                        <a class="dropdown-item" asp-action="PersonalProfile" asp-controller="Patient">
                                             <i class="bi bi-person-circle"></i> Profile
                                         </a>
                                     </li>
@@ -92,6 +92,12 @@
     <main role="main">
         @RenderBody()
     </main>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2023 - BookingCare - <a href="/privacy">Privacy</a>
+        </div>
+    </footer>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

@@ -14,9 +14,12 @@ namespace AppointmentHospital.Models
 
         [Required]
         public Guid DoctorId { get; set; }
+<<<<<<< HEAD
         
 
         public Guid? AcquaintanceId { get; set; }
+=======
+>>>>>>> aaee4d5 (add ForgetPassword)
 
         [Required]
         public DateTime AppointmentTime { get; set; }
@@ -44,13 +47,9 @@ namespace AppointmentHospital.Models
         public virtual Patient Patient { get; set; }
 
         [ForeignKey("DoctorId")]
-<<<<<<< HEAD
-        public Doctor Doctor { get; set; }
+        public virtual  Doctor Doctor { get; set; }
 
         [ForeignKey("AcquaintanceId")]
-        public Acquaintance Acquaintance { get; set; }
-=======
-        public virtual Doctor Doctor { get; set; }
->>>>>>> 1ed4583 (Update function schedule)
+        public virtual Acquaintance Acquaintance { get; set; }
     }
 }

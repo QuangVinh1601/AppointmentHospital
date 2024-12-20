@@ -43,7 +43,7 @@ namespace AppointmentHospital.Controllers
         }
         public IActionResult Register()
         {
-            return View(new RegisterUserRequest() { ConfirmPassword = string.Empty, Email = string.Empty, FullName = string.Empty, Password = string.Empty });
+            return View(new RegisterUserRequest() { Email = string.Empty, FullName = string.Empty, Password = string.Empty, ConfirmPassword = string.Empty, Address = string.Empty });
         }
         [HttpPost]
         public async Task<IActionResult> Login(LoginUserRequest request)
@@ -146,6 +146,7 @@ namespace AppointmentHospital.Controllers
                         return RedirectToAction("Login");
                     }
                     var addLoginResult = await _userManager.AddLoginAsync(user, info);
+                    await _signInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, false);
                     if (!addLoginResult.Succeeded)
                     {
                         return RedirectToAction("Login");
@@ -154,6 +155,7 @@ namespace AppointmentHospital.Controllers
                 }
                 //Existed user but dont link with external provider
                 var addResult=  await _userManager.AddLoginAsync(user, info);
+                await _signInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, false);
                 if(!addResult.Succeeded)
                 {
                     return RedirectToAction("Login");
