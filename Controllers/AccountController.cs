@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity.Data;
-using Microsoft.AspNetCore.Mvc;
-using AppointmentHospital.DTOs.Account;
+﻿using Microsoft.AspNetCore.Mvc;
 using AppointmentHospital.Services;
 using static AppointmentHospital.DTOs.Account.AccountRequest;
 using Microsoft.AspNetCore.Identity;
@@ -9,7 +7,6 @@ using Microsoft.AspNetCore.WebUtilities;
 using System.Text;
 using Hangfire;
 using AppointmentHospital.Services.Implement;
-using ResetPasswordRequest = AppointmentHospital.DTOs.Account.AccountRequest.ResetPasswordRequest;
 using Microsoft.Extensions.Options;
 using AppointmentHospital.Configuration.BaseUrl;
 using System.Security.Claims;
