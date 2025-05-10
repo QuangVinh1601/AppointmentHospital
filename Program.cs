@@ -11,18 +11,36 @@ using AppointmentHospital.Areas.Admin.Repositories;
 using AppointmentHospital.Areas.Admin.Repositories.Implement;
 using AppointmentHospital.Areas.Admin.Services;
 using AppointmentHospital.Areas.Admin.Services.Implement;
+using AppointmentHospital.Configuration.EmailConfiguaration;
+using Hangfire;
+using AppointmentHospital.Configuration.BaseUrl;
+using DotNetEnv;
+
 
 
 namespace AppointmentHospital
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
 
             var builder = WebApplication.CreateBuilder(args);
-            // Add services to the container.
+            Env.Load();
             builder.Services.AddControllersWithViews();
+            builder.Services.AddControllers()
+            .AddJsonOptions(options =>
+            {
+                options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve;
+                options.JsonSerializerOptions.DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull;
+            });
+
+            builder.Services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(30);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
             var configuration = builder.Configuration;
             builder.Services.AddHttpContextAccessor();
             builder.Services.AddScoped<SeedData>();
@@ -32,17 +50,44 @@ namespace AppointmentHospital
             builder.Services.AddScoped<IManagingPatientService, ManagingPatientService>();
             builder.Services.AddScoped<IManagingDoctorRepository, ManagingDoctorRepository>();
             builder.Services.AddScoped<IManagingDoctorService, ManagingDoctorService>();
+            builder.Services.AddScoped<IStatisticService, StatisticService>();
+            builder.Services.AddScoped<IStatisticRepository, StatisticRepository>();
             builder.Services.AddScoped<IAppointmentService, AppointmentService>();
             builder.Services.AddScoped<IAppointmentRepository, AppointmentRepository>();
-            builder.Services.AddScoped<IAppointmentStatisticService, AppointmentStatisticService>();
-            builder.Services.AddScoped<IAppointmentStatisticRepository, AppointmentStatisticRepository>();
+     
+            builder.Services.AddScoped<IPatientService, PatientService>();
+            builder.Services.AddScoped<IPatientRepository, PatientRepository>();
+            builder.Services.Configure<EmailConfiguration>(configuration.GetSection("SMTP"));
+            builder.Services.Configure<BaseUrl>(configuration.GetSection("BaseUrl"));
+            builder.Services.AddTransient<IEmailService, EmailService>();
+            
+
+            builder.Services.AddScoped<IDoctorRepository, DoctorRepository>();
+            builder.Services.AddScoped<IDoctorService, DoctorService>();
+            builder.Services.AddScoped<ITimeSlotRepository, TimeSlotRepository>();
+            builder.Services.AddScoped<ITimeSlotService, TimeSlotService>();
+
+            builder.Services.AddScoped<IAppointmentDateRepository, AppointmentDateRepository>();
+            builder.Services.AddScoped<IAppointmentDateService, AppointmentDateService>();
+            
 
             builder.Services.AddScoped<IDoctorRepository, DoctorRepository>();
             builder.Services.AddScoped<IDoctorService, DoctorService>();
 
-            builder.Services.AddScoped<IAppointmentDateRepository, AppointmentDateRepository>();
-            
+            builder.Services.AddScoped<IDiseasePredictionService, DiseasePredictionService>();
+            builder.Services.AddScoped<ICronTimeSlotService, CronTimeSlotService>();
 
+            builder.Services.AddAuthentication().AddGoogle(option =>
+            {
+                var clientId = Environment.GetEnvironmentVariable("GOOGLE_CLIENTID");
+                var clientSecret = Environment.GetEnvironmentVariable("GOOGLE_CLIENTSECRET");
+                option.CallbackPath = "/dang-nhap-bang-google";
+                option.ClientId = clientId;
+                option.ClientSecret = clientSecret;
+            });
+            builder.Services.AddScoped<IAppointmentDateRepository, AppointmentDateRepository>();
+            builder.Services.AddScoped<IAppointmentDateService, AppointmentDateService>();
+            
             builder.Services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString("AppointmentHospitalDB")));
 
@@ -51,34 +96,48 @@ namespace AppointmentHospital
                             .AddDefaultTokenProviders();
             builder.Services.Configure<IdentityOptions>(options => {
                 // Thiết lập về Password
-                options.Password.RequireDigit = false; // Không bắt phải có số
-                options.Password.RequireLowercase = false; // Không bắt phải có chữ thường
-                options.Password.RequireNonAlphanumeric = false; // Không bắt ký tự đặc biệt
-                options.Password.RequireUppercase = false; // Không bắt buộc chữ in
-                options.Password.RequiredLength = 3; // Số ký tự tối thiểu của password
-                options.Password.RequiredUniqueChars = 1; // Số ký tự riêng biệt
+                options.Password.RequireDigit = false;
+                options.Password.RequireLowercase = false; 
+                options.Password.RequireNonAlphanumeric = false; 
+                options.Password.RequireUppercase = false; 
+                options.Password.RequiredLength = 3;
+                options.Password.RequiredUniqueChars = 1; 
 
-                // Cấu hình Lockout - khóa user
-                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5); // Khóa 5 phút
-                options.Lockout.MaxFailedAccessAttempts = 5; // Thất bại 5 lầ thì khóa
+                
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+                options.Lockout.MaxFailedAccessAttempts = 5; 
                 options.Lockout.AllowedForNewUsers = true;
 
                 // Cấu hình về User.
-                options.User.AllowedUserNameCharacters = // các ký tự đặt tên user
+                options.User.AllowedUserNameCharacters = 
                     "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
-                options.User.RequireUniqueEmail = true;  // Email là duy nhất
+                options.User.RequireUniqueEmail = true;  
 
                 // Cấu hình đăng nhập.
-                options.SignIn.RequireConfirmedEmail = true;            // Cấu hình xác thực địa chỉ email (email phải tồn tại)
-                options.SignIn.RequireConfirmedPhoneNumber = false;     // Xác thực số điện thoại
+                options.SignIn.RequireConfirmedEmail = true;            
+                options.SignIn.RequireConfirmedPhoneNumber = false;    
 
             });
             builder.Services.ConfigureApplicationCookie(options =>
             {
-                options.ExpireTimeSpan = TimeSpan.FromMinutes(15);
-                options.LoginPath = "/Identity/Account/Login";
-                options.LogoutPath = "/Identity/Account/Logout";
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(45);
+                options.LoginPath = "/Account/Login";
+                options.LogoutPath = "/Account/Logout";
+                options.AccessDeniedPath = "/Account/AccessDeny";
             });
+
+            builder.Services.AddHangfire(config =>
+            {
+                config.SetDataCompatibilityLevel(CompatibilityLevel.Version_180)
+                .UseSimpleAssemblyNameTypeSerializer()
+                .UseRecommendedSerializerSettings()
+                .UseSqlServerStorage(configuration.GetConnectionString("AppointmentHospitalDB"));
+            });
+            builder.Services.AddHangfireServer();
+            builder.Services.AddSignalR().AddNewtonsoftJsonProtocol(options =>
+            {
+                options.PayloadSerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+            });;
 
             var app = builder.Build();
             using(var scope = app.Services.CreateScope())
@@ -86,22 +145,28 @@ namespace AppointmentHospital
                 var seedData = scope.ServiceProvider.GetService<SeedData>();
                 seedData.InitialData().Wait();
             }
-
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
             {
                 app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            app.UseSession();
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
+            app.UseHangfireDashboard();
 
+            using (var scope = app.Services.CreateScope())
+            {
+                var cronTimeSlotService = scope.ServiceProvider.GetRequiredService<ICronTimeSlotService>();
+                await cronTimeSlotService.DeleteOldTimeSlotAsync();
+            }
+
+            app.MapHub<ScheduleHub>("/scheduleHub");
             app.MapAreaControllerRoute(
             name: "admin",
             areaName: "Admin",
@@ -109,11 +174,9 @@ namespace AppointmentHospital
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Account}/{action=Login}/{id?}");
-            
-            app.MapControllerRoute(
-                name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+                pattern: "{controller=Patient}/{action=Index}/{id?}");
+                
+            app.MapHangfireDashboard("/hangfire");
 
             app.Run();
         }

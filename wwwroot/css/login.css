@@ -1,0 +1,118 @@
+﻿.login-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.login-container h2 {
+    color: #1976D2;
+    margin-bottom: 2rem;
+    font-weight: 600;
+}
+                    
+.form-floating {
+    position: relative;
+}
+
+.form-floating input {
+    height: 60px;
+    border-radius: 10px;
+    border: 2px solid #e0e0e0;
+    padding-left: 45px;
+    transition: all 0.3s ease;
+}
+
+.form-floating input:focus {
+    border-color: #1976D2;
+    box-shadow: 0 0 0 0.2rem rgba(25, 118, 210, 0.25);
+}
+
+.form-floating label {
+    padding-left: 45px;
+}
+
+.form-floating label i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #757575;
+}
+
+.btn-primary {
+    height: 50px;
+    border-radius: 10px;
+}
+
+.social-login {
+    margin-top: 2rem;
+}
+.links-section a {
+    text-decoration: none;
+    color: #1976D2;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 1.5rem 0;
+}
+
+.divider::before,
+.divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.divider span {
+    padding: 0 1rem;
+    color: #757575;
+    font-size: 0.9rem;
+}
+
+.btn-outline-secondary {
+    height: 50px;
+    border-radius: 10px;
+    border: 2px solid #e0e0e0;
+    color: #333;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn-outline-secondary:hover {
+    background: #f5f5f5;
+    border-color: #1976D2;
+    color: #1976D2;
+    transform: translateY(-2px);
+}
+
+.btn-outline-secondary i {
+    font-size: 1.2rem;
+}
+
+.fa-google {
+    color: #DB4437;
+}
+
+.fa-facebook {
+    color: #4267B2;
+}
+
+.fa-twitter {
+    color: #1DA1F2;
+}
+
+@media (max-width: 576px) {
+    .login-container {
+        padding: 1rem;
+    }
+
+    .btn-outline-secondary {
+        height: 45px;
+        font-size: 0.9rem;
+    }
+}

@@ -15,6 +15,10 @@ namespace AppointmentHospital.Models
         public DbSet<Patient> Patients { get; set; }
         public DbSet<TimeSlot> TimeSlots { get; set; }
         public DbSet<Acquaintance> Acquaintances { get; set;}
+        public DbSet<Drug> Drugs { get; set; }
+        public DbSet<DiagnosisHistory> DiagnosisHistory { get; set; }
+
+        public DbSet<Feedback> Feedbacks { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -51,5 +55,9 @@ namespace AppointmentHospital.Models
             });
         }
 
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseLazyLoadingProxies();
+        }
     }
 }

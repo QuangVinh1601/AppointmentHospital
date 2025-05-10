@@ -1,0 +1,612 @@
+﻿@using AppointmentHospital.Entity
+@using AppointmentHospital.Helpers
+@model Pagination<TimeSlot>
+
+<div class="container py-4">
+    <h1 class="text-primary mb-4">Doctor Schedule Registration</h1>
+
+    <div class="card shadow-sm mb-4">
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                @TempData["SuccessMessage"]
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        }
+
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                @TempData["ErrorMessage"]
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        }
+        <div class="card-header bg-white">
+            <h3 class="card-title mb-0">Doctor Information</h3>
+        </div>
+        <div class="card-body">
+            <form method="post" asp-action="UpdateDoctorInfo">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="DoctorName" class="form-label">Full Name</label>
+                            <input type="text" class="form-control" id="DoctorName" name="DoctorName"
+                                value="@ViewBag.DoctorName" disabled required />
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="Specialty" class="form-label">Specialty</label>
+                            <input type="text" class="form-control" id="DoctorName" name="DoctorName"
+                                value="@ViewBag.Speciality" disabled required />
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="card shadow-sm mb-4">
+        <div class="card-header bg-white">
+            <h3 class="card-title mb-0">Regular Working Schedule</h3>
+        </div>
+        <div class="card-body">
+            <form method="post" id="updateRegularScheduleForm" asp-action="UpdateRegularSchedule">
+                @foreach (var day in Enum.GetValues<DayOfWeek>())
+                {
+                    <div class="row align-items-center mb-3">
+                        <div class="col-md-3">
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="@($"Enable{day}")"
+                                    name="@($"Schedules[{(int)day}].Enabled")" value="true" />
+                                <input type="hidden" name="@($"Schedules[{(int)day}].DayOfWeek")" value="@((int)day)" />
+                                <label class="form-check-label fw-bold" for="@($"Enable{day}")">
+                                    @day.ToString()
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="input-group">
+                                <span class="input-group-text">From</span>
+                                <input type="time" class="form-control" id="@($"StartTime{day}")"
+                                    name="@($"Schedules[{(int)day}].StartTime")" />
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="input-group">
+                                <span class="input-group-text">To</span>
+                                <input type="time" class="form-control" id="@($"EndTime{day}")"
+                                    name="@($"Schedules[{(int)day}].EndTime")" />
+                            </div>
+                        </div>
+                    </div>
+                }
+
+                <button type="submit" id="saveRegularScheduleButton" class="btn btn-primary mt-3">Save Regular
+                    Schedule</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="container py-4">
+        <div class="card shadow-sm">
+            <div class="card-header bg-white">
+                <h3 class="card-title mb-0">Register Off Day</h3>
+            </div>
+            <div class="card-body">
+                <form method="post" asp-controller="Doctor" asp-action="RegisterOffDay">
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="offDate" class="form-label">Off Date</label>
+                            <input type="date" class="form-control" id="offDate" name="offDate" required>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="Note" class="form-label">Reason for Off Day</label>
+                        <textarea class="form-control" id="Note" name="Note" rows="3"
+                            placeholder="Please provide a reason for the off day request..."></textarea>
+                    </div>
+
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <button type="submit" class="btn btn-primary px-4">
+                            Register Off Day
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="card shadow-sm">
+        <div class="card-header bg-white">
+            <h3 class="card-title mb-0">Registered Schedules</h3>
+            <div class="d-flex justify-content-center align-items-center w-100">
+                <form asp-action="Calendar"  method="get" class="d-flex justify-content-center align-items-center filter-form">
+                    <input type="hidden" name="sortBy" value="@ViewBag.CurrentSort" />
+                    <input type="hidden" name="sortOrder" value="@ViewBag.CurrentSortOrder" />
+
+                    <div class="date-picker-wrapper">
+                        <div class="form-floating">
+                            <input type="date" id="filterDate" name="filterDate" class="form-control date-input"
+                                value="@ViewBag.FilterDate" />
+                            <label for="filterDate">
+                                <i class="bi bi-calendar3 me-2"></i>Select Date
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="button-group">
+                        <button type="submit" class="btn btn-primary btn-animate">
+                            <i class="bi bi-funnel-fill me-2"></i>
+                            <span>Filter</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-striped table-hover">
+                    <thead class="table-light">
+                        <tr>
+                            <th class="sortable"
+                                onclick="location.href='@Url.Action("Calendar", new { sortBy = "Days", sortOrder = ViewBag.CurrentSort == "Days" && ViewBag.CurrentSortOrder == "asc" ? "desc" : "asc", page = 1 })'">
+                                Days
+                                @if (ViewBag.CurrentSort == "Days")
+                                {
+                                    @if (ViewBag.CurrentSortOrder == "asc")
+                                    {
+                                        <i class="bi bi-arrow-up ms-1"></i>
+                                    }
+                                    else
+                                    {
+                                        <i class="bi bi-arrow-down ms-1"></i>
+                                    }
+                                }
+                                else
+                                {
+                                    <i class="bi bi-arrow-down-up ms-1"></i>
+                                }
+                            </th>
+                            <th class="sortable"
+                                onclick="location.href='@Url.Action("Calendar", new { sortBy = "StartTime", sortOrder = ViewBag.CurrentSort == "StartTime" && ViewBag.CurrentSortOrder == "asc" ? "desc" : "asc", page = 1 })'">
+                                Start Time
+                                @if (ViewBag.CurrentSort == "StartTime")
+                                {
+                                    @if (ViewBag.CurrentSortOrder == "asc")
+                                    {
+                                        <i class="bi bi-arrow-up ms-1"></i>
+                                    }
+                                    else
+                                    {
+                                        <i class="bi bi-arrow-down ms-1"></i>
+                                    }
+                                }
+                                else
+                                {
+                                    <i class="bi bi-arrow-down-up ms-1"></i>
+                                }
+                            </th>
+                            <th class="sortable"
+                                onclick="location.href='@Url.Action("Calendar", new { sortBy = "EndTime",  sortOrder = ViewBag.CurrentSort == "EndTime" && ViewBag.CurrentSortOrder == "asc" ? "desc" : "asc", page = 1 })'">
+                                End Time
+                                @if (ViewBag.CurrentSort == "EndTime")
+                                {
+                                    @if (ViewBag.CurrentSortOrder == "asc")
+                                    {
+                                        <i class="bi bi-arrow-up ms-1"></i>
+                                    }
+                                    else
+                                    {
+                                        <i class="bi bi-arrow-down ms-1"></i>
+                                    }
+                                }
+                                else
+                                {
+                                    <i class="bi bi-arrow-down-up ms-1"></i>
+                                }
+                            </th>
+                            <th class="text-center">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var schedule in Model)
+                        {
+                            <tr>
+                                <td>@schedule.StartTime.ToString("dd/MM")</td>
+                                <td>@schedule.StartTime.ToString("HH:mm")</td>
+                                <td>@schedule.EndTime.ToString("HH:mm")</td>
+                                <td class="text-center">
+                                    <button type="button" id="deleteButton" class="btn btn-danger btn-sm delete-btn"
+                                        data-id="@schedule.TimeSlotId" data-available="@schedule.Available"
+                                        data-starttime="@schedule.StartTime" data-endtime="@schedule.EndTime">
+                                        <i class="bi bi-trash"></i> Delete
+                                    </button>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <div class="d-flex justify-content-center align-items-center p-4">
+                    <nav aria-label="Page navigation" class="mx-auto">
+                        <ul class="pagination pagination-rounded mb-0">
+                            @if (Model.HasPreviousPage)
+                            {
+                                <li class="page-item">
+                                    <a class="page-link" href="javascript:void(0)"
+                                        onclick="changeSchedulePage(@(Model.CurrentPage - 1))" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                            }
+
+                            @for (int i = 1; i <= Model.TotalPage; i++)
+                            {
+                                <li class="page-item @(i == Model.CurrentPage ? "active" : "")">
+                                    <a class="page-link" href="javascript:void(0)" onclick="changeSchedulePage(@i)">@i</a>
+                                </li>
+                            }
+
+                            @if (Model.HasNextPage)
+                            {
+                                <li class="page-item">
+                                    <a class="page-link" href="javascript:void(0)"
+                                        onclick="changeSchedulePage(@(Model.CurrentPage + 1))" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="suggestModal" tabindex="-1" aria-labelledby="suggestModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="suggestModalLabel">Suggest New Date</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="suggestForm" asp-controller="Doctor" asp-action="SuggestDay">
+                        <input type="hidden" id="timeSlotId" name="timeSlotId" />
+                        <div class="mb-3">
+                            <label for="suggestDate" class="form-label">New Date</label>
+                            <input type="date" id="suggestDate" name="suggestDate" class="form-control" required />
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit Suggestion</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="suggestedModal" tabindex="-1" aria-labelledby="suggestModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="suggestModalLabel">Suggest New Date</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="suggestForm" asp-controller="Doctor" asp-action="SuggestDayForMultiplePatients"
+                        method="get">
+                        <div class="mb-3">
+                            <label for="suggestDate" class="form-label">New Date</label>
+                            <input type="date" id="suggestDate" name="suggestDate" class="form-control" required />
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit Suggestion</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @if (TempData["ShowSuggestModal"] != null && (bool)TempData["ShowSuggestModal"])
+    {
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const suggestModal = new bootstrap.Modal(document.getElementById("suggestedModal"));
+                suggestModal.show();
+            });
+        </script>
+    }
+</div>
+@section Styles {
+    <style>
+        .pagination-rounded .page-link {
+            border-radius: 30px;
+            margin: 0 3px;
+            min-width: 40px;
+            text-align: center;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, .1);
+            border: none;
+        }
+
+        .page-link {
+            color: #4e73df;
+        }
+
+        .page-item.active .page-link {
+            background-color: #4e73df;
+            border-color: #4e73df;
+        }
+
+        .page-link:hover {
+            background-color: #4e73df;
+            color: white;
+        }
+
+        .form-floating>.form-control {
+            height: calc(3.5rem + 2px);
+        }
+
+        .form-floating>label {
+            padding: 1rem 0.75rem;
+        }
+
+        .btn {
+            padding: 0.5rem 1rem;
+            border-radius: 0.25rem;
+        }
+
+        .sortable {
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .sortable:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+
+        .filter-form {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .date-picker-wrapper {
+            flex: 1;
+            max-width: 300px;
+        }
+
+        .date-input {
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            padding: 0.75rem 1rem;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .date-input:focus {
+            border-color: #4e73df;
+            box-shadow: 0 0 0 0.2rem rgba(78, 115, 223, 0.25);
+        }
+
+        .button-group {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .btn-animate {
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-animate:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #4e73df, #6f42c1);
+            border: none;
+        }
+
+        .btn-outline-secondary {
+            border: 2px solid #e9ecef;
+        }
+
+        .btn-outline-secondary:hover {
+            background: #f8f9fa;
+            border-color: #4e73df;
+            color: #4e73df;
+        }
+
+        .form-floating>label {
+            padding: 1rem;
+            color: #6c757d;
+        }
+
+        .form-floating>.form-control:focus~label,
+        .form-floating>.form-control:not(:placeholder-shown)~label {
+            color: #4e73df;
+            transform: scale(.85) translateY(-0.75rem) translateX(0.15rem);
+        }
+    </style>
+}
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('input[name="ScheduleType"]').change(function () {
+                if ($(this).val() === 'special') {
+                    $('#specialTimeSection').show();
+                } else {
+                    $('#specialTimeSection').hide();
+                }
+            });
+
+            $('#specialTimeSection').hide();
+        });
+        $(document).ready(function () {
+            $('.filter-form').on('submit', function () {
+                localStorage.setItem('scrollPosition', window.scrollY);
+            });
+
+            const scrollPosition = localStorage.getItem('scrollPosition');
+            if (scrollPosition) {
+                window.scrollTo(0, parseInt(scrollPosition));
+                localStorage.removeItem('scrollPosition');
+            }
+        });
+        function changeSchedulePage(page) {
+            localStorage.setItem('scrollPosition', window.scrollY);
+            window.location.href = '@Url.Action("Calendar")?page=' + page;
+        }
+
+        window.onload = function () {
+            const scrollPosition = localStorage.getItem('scrollPosition');
+            if (scrollPosition) {
+                window.scrollTo(0, parseInt(scrollPosition));
+                localStorage.removeItem('scrollPosition');
+            }
+        }
+        let currentSort = {
+            column: -1,
+            direction: 'asc'
+        };
+
+        function sortTable(column) {
+            const table = document.querySelector('table');
+            const headers = table.querySelectorAll('th');
+            const tbody = table.querySelector('tbody');
+            const rows = Array.from(tbody.querySelectorAll('tr'));
+
+            headers.forEach(header => {
+                header.classList.remove('sort-asc', 'sort-desc');
+            });
+
+            if (currentSort.column === column) {
+                currentSort.direction = currentSort.direction === 'asc' ? 'desc' : 'asc';
+            } else {
+                currentSort.column = column;
+                currentSort.direction = 'asc';
+            }
+
+            headers[column].classList.add(`sort-${currentSort.direction}`);
+
+            const sortedRows = rows.sort((a, b) => {
+                const aValue = a.cells[column].textContent.trim();
+                const bValue = b.cells[column].textContent.trim();
+
+                if (column === 0) {
+                    const [aDay, aMonth] = aValue.split('/').map(Number);
+                    const [bDay, bMonth] = bValue.split('/').map(Number);
+                    return currentSort.direction === 'asc'
+                        ? (aMonth - bMonth || aDay - bDay)
+                        : (bMonth - aMonth || bDay - aDay);
+                } else {
+                    return currentSort.direction === 'asc'
+                        ? aValue.localeCompare(bValue)
+                        : bValue.localeCompare(aValue);
+                }
+            });
+
+            tbody.innerHTML = '';
+            sortedRows.forEach(row => tbody.appendChild(row));
+        }
+
+        const saveRegularScheduleButton = document.getElementById('saveRegularScheduleButton');
+        const updateRegularScheduleForm = document.getElementById('updateRegularScheduleForm');
+        if (saveRegularScheduleButton && updateRegularScheduleForm) {
+            saveRegularScheduleButton.addEventListener('click', function (e) {
+                e.preventDefault();
+                saveRegularScheduleButton.disabled = true;
+                Swal.fire({
+                    title: 'Update Schedule',
+                    text: 'Are you sure to update schedule?',
+                    icon: 'question',
+                    showCancelButton: true,
+                    confirmButtonText: 'Accept',
+                    cancelButtonText: 'Cancel'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        updateRegularScheduleForm.submit();
+                    }
+                });
+                saveRegularScheduleButton.disabled = false;
+            });
+        }
+
+        document.querySelectorAll('input[type="time"]').forEach(function (timeInput) {
+            timeInput.addEventListener('input', function () {
+                let [hour, minute] = this.value.split(':');
+                if (minute !== '00') {
+                    this.value = `${hour}:00`;
+                }
+            });
+        });
+
+        var alertElements = document.querySelectorAll(".alert-dismissible");
+        var hideTimeout = null;
+
+        function hideAlert() {
+            alertElements.forEach(alert => alert.classList.remove('show'));
+        }
+
+        function showAlert() {
+            if (hideTimeout) {
+                clearTimeout(hideTimeout);
+            }
+            hideTimeout = setTimeout(hideAlert, 2000);
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const deleteButtons = document.querySelectorAll(".delete-btn");
+            const suggestModal = new bootstrap.Modal(document.getElementById("suggestModal"));
+
+            deleteButtons.forEach(button => {
+                button.addEventListener("click", () => {
+                    const { id: timeSlotId, available, starttime } = button.dataset;
+                    const startTime = new Date(starttime);
+
+                    if (available === "False" && startTime > new Date()) {
+                        document.getElementById("timeSlotId").value = timeSlotId;
+                        Swal.fire({
+                            title: 'Change Schedule',
+                            text: 'This schedule has been booked. Do you want to change to another appointment?',
+                            icon: 'question',
+                            showCancelButton: true,
+                            confirmButtonText: 'Accept',
+                            cancelButtonText: 'Cancel'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                suggestModal.show();
+                            }
+                        });
+                    } else {
+                        Swal.fire({
+                            title: 'Delete Schedule',
+                            text: 'Are you sure to delete this schedule?',
+                            icon: 'question',
+                            showCancelButton: true,
+                            confirmButtonText: 'Accept',
+                            cancelButtonText: 'Cancel'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                window.location.href = `/Doctor/DeleteTimeSlot/${timeSlotId}`;
+                            }
+                        });
+                    }
+                });
+            });
+        });
+
+
+    </script>
+}
