@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thông báo kết quả chuẩn đoán</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .email-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #e0e0e0;
+            background-color: #f9f9f9;
+        }
+
+        h2 {
+            color: #007BFF;
+        }
+
+        .diagnosis-box, .medications-box {
+            background-color: #fff;
+            border-left: 4px solid #007BFF;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+
+        .medications-box {
+            border-left-color: #28a745;
+        }
+
+        .highlight {
+            color: #007BFF;
+            font-weight: 600;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .footer {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+            text-align: center;
+            color: #666;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+
+        ul li {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <h2>Thông báo kết quả chuẩn đoán</h2>
+        <p>Kính gửi <strong>{{fullUserName}}</strong>,</p>
+        
+        <p>Bác sĩ <strong>{{DoctorName}}</strong> đã hoàn thành việc chuẩn đoán và gửi đến bạn kết quả như sau:</p>
+        
+        <div class="diagnosis-box">
+            <strong>Kết quả chuẩn đoán:</strong><br>
+            <em>{{DiagnosisDetails}}</em>
+        </div>
+
+        <div class="medications-box">
+            <strong>Đơn thuốc:</strong>
+            <ul>
+                {{PrescribedMedicationsHtml}}
+            </ul>
+        </div>
+
+        <div class="medications-box">
+            <strong>Ghi chú:</strong><br>
+            <em>{{DoctorNotes}}</em>
+        </div>
+
+        <p>Để đảm bảo quá trình điều trị hiệu quả, chúng tôi khuyến nghị bạn:</p>
+        <ul>
+            <li>Tuân thủ chặt chẽ phác đồ điều trị của bác sĩ</li>
+            <li>Uống thuốc đúng liều lượng và thời gian</li>
+            <li>Theo dõi và ghi nhận các phản ứng (nếu có)</li>
+        </ul>
+
+        <p>Nếu có bất kỳ thắc mắc nào, vui lòng liên hệ với chúng tôi.</p>
+        <div class="footer">
+            <p>Trân trọng,<br>
+            <strong>Đội ngũ chăm sóc khách hàng MedicalCare</strong></p>
+            <small>© 2025 MedicalCare. Mọi quyền được bảo lưu.</small>
+        </div>
+    </div>
+</body>
+</html>

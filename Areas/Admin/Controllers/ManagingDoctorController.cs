@@ -22,6 +22,8 @@ namespace AppointmentHospital.Areas.Admin.Controllers
         public async Task<IActionResult> Index(int? page, string searchTerm, Specialization? specialization)
         {
             ViewData["SelectSpecialization"] = _managingDoctorService.GetSpecialization();
+            ViewData["Specialization"] = specialization;
+            ViewBag.SearchTerm = searchTerm;
             var doctorList = await _managingDoctorService.GetAllDoctor(page ?? 1, searchTerm, specialization);
             return View(doctorList);
         }
@@ -55,6 +57,10 @@ namespace AppointmentHospital.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> EditDoctor(Guid id, ManagingDoctorRequest request)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(request);
+            }
             await _managingDoctorService.EditDoctorAsync(id, request);
             return RedirectToAction("Index");
         }

@@ -15,6 +15,10 @@ namespace AppointmentHospital.Models
         [Required]
         public Guid DoctorId { get; set; }
 
+        public Guid? AcquaintanceId { get; set; }
+
+        public Guid? FeedbackId { get; set; }
+
         [Required]
         public DateTime AppointmentTime { get; set; }
 
@@ -38,9 +42,16 @@ namespace AppointmentHospital.Models
         public DateTime UpdatedAt { get; set; } = DateTime.Now;
 
         [ForeignKey("PatientId")]
-        public Patient Patient { get; set; }
+        public virtual Patient Patient { get; set; }
 
         [ForeignKey("DoctorId")]
-        public Doctor Doctor { get; set; }
+        public virtual  Doctor Doctor { get; set; }
+
+        [ForeignKey("AcquaintanceId")]
+        public virtual Acquaintance Acquaintance { get; set; }
+
+        [ForeignKey("FeedbackId")]
+        public virtual Feedback Feedback { get; set; }
+
     }
 }

@@ -1,9 +1,11 @@
 ﻿@using AppointmentHospital.Areas.Admin.DTOs.ManagingDoctor;
 @using AppointmentHospital.Helpers;
+@using AppointmentHospital.EnumStatus;
 @model Pagination<ManagingDoctorResponse>;
 @{
     var specializations = ViewData["SelectSpecialization"] as List<SelectListItem>;
     var searchTerm = ViewBag.SearchTerm as string;
+    var specializationViewData = ViewData["Specialization"] as Specialization?;
 }
 
 <div class="card shadow-sm mb-4">
@@ -18,17 +20,38 @@
                     </span>
                     <input name="searchTerm"
                            class="form-control"
-                           placeholder="Enter author or title..."
+                           placeholder="Enter doctor name...."
                            value="@searchTerm">
                 </div>
             </div>
             <div class="col-md-3">
-                <label class="form-label">Chuyên khoa</label>
+                <label class="form-label">Specialization</label>
                 <select name="specialization" class="form-select">
-                    <option value="" disabled>Chọn chuyên khoa</option>
+                    @if(!specializationViewData.HasValue)
+                    {
+                        <option value="" disabled selected>Choose specialization</option>
+                    }
+                    else
+                    {
+                        <option value="" disabled>Choose specialization</option>
+                    }
+                    
                     @foreach (var specialization in specializations)
                     {
-                        <option value="@specialization.Value" >@specialization.Text</option>
+                        if(specializationViewData.HasValue) {
+                            if(((int)specializationViewData).ToString() == specialization.Value)
+                            {
+                                <option value="@specialization.Value" selected >@specialization.Text</option>
+                            }
+                            else
+                            {
+                                <option value="@specialization.Value" >@specialization.Text</option>
+                            }
+                        }
+                        else
+                        {
+                            <option value="@specialization.Value" >@specialization.Text</option>
+                        }
                     }
                 </select>
             </div>
@@ -62,6 +85,8 @@
                         <th class="text-dark text-decoration-none">Email Address</th>
                         <th class="text-dark text-decoration-none">Phone Number</th>
                         <th class="text-dark text-decoration-none">Specialization</th>
+                        <th class="text-dark text-decoration-none">Gender</th>
+                        <th class="text-dark text-decoration-none">Degree</th>
                         <th class="text-dark text-decoration-none">Experience Year</th>
 
                         <th class="text-end">Actions</th>
@@ -85,6 +110,12 @@
                             </td>
                             <td>
                                 @doctor.Specializaiton
+                            </td>
+                            <td>
+                                @doctor.Gender
+                            </td>
+                            <td>
+                                @doctor.Degree
                             </td>
                             <td>
                                 @doctor.ExperienceYear
@@ -112,16 +143,16 @@
         @{
             <ul class="pagination">
                 <li class="page-item @(!Model.HasPreviousPage ? "disabled" : "") ">
-                    <a class="page-link" asp-action="Index" asp-route-page="@(Model.CurrentPage-1)">Previous</a>
+                    <a class="page-link" asp-action="Index" asp-route-page="@(Model.CurrentPage-1)" asp-route-specialization="@(specializationViewData)" asp-route-searchTerm="@(searchTerm)">Previous</a>
                 </li>
                 @for (int i = 1; i <= Model.TotalPage; i++)
                 {
                     <li class="page-item @(Model.CurrentPage == @i ? "active": "" )">
-                        <a class="page-link" asp-action="Index" as asp-route-page="@i">@i</a>
+                        <a class="page-link" asp-action="Index" as asp-route-page="@i" asp-route-specialization="@(specializationViewData)" asp-route-searchTerm="@(searchTerm)">@i</a>
                     </li>
                 }
                 <li class="page-item  @(!Model.HasNextPage? "disabled": "")">
-                    <a class="page-link" asp-action="Index" asp-route-page="@(Model.CurrentPage+1)">Next</a>
+                    <a class="page-link" asp-action="Index" asp-route-page="@(Model.CurrentPage+1)" asp-route-specialization="@(specializationViewData)" asp-route-searchTerm="@(searchTerm)">Next</a>
                 </li>
             </ul>
         }
@@ -131,4 +162,5 @@
 
 @section Styles {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css" />
+      <link rel="stylesheet" href="~/css/managing-doctor.css" />
 }

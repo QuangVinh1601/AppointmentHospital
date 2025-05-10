@@ -32,6 +32,28 @@ namespace AppointmentHospital.DTOs.Account
             [Required(ErrorMessage = "Xác nhận mật khẩu không được để trống.")]
             [Compare("Password", ErrorMessage = "Xác nhận mật khẩu không khớp với mật khẩu.")]
             public string ConfirmPassword { set; get; }
+
+            [Required]
+            public string Address { get; set; }
+            public DateTime DateOfBirth { get; set; }
         }
+        public class ForgetPasswordRequest
+        {
+            [Required(ErrorMessage = "Email is required")]
+            [EmailAddress(ErrorMessage = "Invalid email address")]
+            [Display(Name = "Email")]
+            public string EmailAddress { get; set; }
+        }
+        public class UnconfirmedEmailRequest
+        {
+            public string Email { set; get; }
+        }
+        public class ResetPasswordRequest
+        {
+            public string Email { set; get; }
+            public string Password { set; get; }
+            public string ConfirmPassword { set; get; }
+            public string Code { set; get; }
+        }     
     }
 }
